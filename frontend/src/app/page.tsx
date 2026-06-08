@@ -2,6 +2,11 @@ import Link from "next/link";
 
 const links = [
   {
+    label: "🎓 Academia",
+    href: "/academia",
+    external: false,
+  },
+  {
     label: "📞 Reservar Llamada",
     href: "/reservar",
     external: false,
