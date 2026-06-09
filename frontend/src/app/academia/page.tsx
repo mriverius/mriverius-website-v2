@@ -1,10 +1,13 @@
 import Breadcrumb from "../components/Breadcrumb";
 import AcademiaPopup from "./AcademiaPopup";
+import CourseBanner from "./CourseBanner";
+import FloatingWhatsApp from "./FloatingWhatsApp";
+import Reveal from "./Reveal";
 
 export const metadata = {
   title: "Academia — Riverius",
   description:
-    "Antes yo tampoco entendía IA. Ahora lo enseño. Cursos de Inteligencia Artificial en 2 niveles: Workflows y Agentes de IA. +40 estudiantes formados.",
+    "Usa la IA para ganar más y trabajar menos. Cursos de automatización con Make.com, n8n y Copilot Studio. +40 estudiantes formados.",
 };
 
 /* ──────────────────────────────────────────────────────────────
@@ -12,15 +15,22 @@ export const metadata = {
    ────────────────────────────────────────────────────────────── */
 const VIDEOS = {
   primeraClase: { id: "oihg5jf7pc", aspect: 1.6 },
-  testimonio1: { id: "u8rfe4702b", aspect: 0.558, nombre: "Andrei Espinoza" },
+  testimonio1: { id: "u8rfe4702b", aspect: 0.558, nombre: "Andrey Espinoza" },
   testimonio2: { id: "4dtjtsoyfe", aspect: 0.555, nombre: "Bernal Barrantes" },
 };
 
 const WHATSAPP_NUMBER = "50685973818";
-const WHATSAPP_MSG = encodeURIComponent(
+const waLink = (msg: string) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+const WHATSAPP_LINK = waLink(
   "¡Hola Riverius! Vi la página de la Academia y quiero más información sobre los cursos de IA."
 );
-const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
+
+/* Banner / próximo curso (Make.com, abre 23 de junio) */
+const BANNER_LINK = waLink(
+  "¡Hola Riverius! Vi que el curso de Automatizaciones con Make.com abre el 23 de junio. Quiero reservar mi cupo."
+);
 
 /* ──────────────────────────────────────────────────────────────
    Íconos SVG propios (sin emojis)
@@ -112,6 +122,39 @@ function BoltIcon({ className }: IconProps) {
     </svg>
   );
 }
+function GlobeIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={base(className)} aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18" />
+    </svg>
+  );
+}
+function InstagramIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={base(className)} aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+function YouTubeIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={base(className)} aria-hidden="true">
+      <rect x="2" y="5" width="20" height="14" rx="4" />
+      <path d="m10 9 5 3-5 3V9Z" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+function LinkedInIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={base(className)} aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 11v6" />
+    </svg>
+  );
+}
 
 /* ──────────────────────────────────────────────────────────────
    Datos
@@ -145,42 +188,153 @@ const razones = [
   },
 ];
 
-const niveles = [
+const cursos = [
   {
-    badge: "Nivel 1 · Principiantes",
-    title: "Workflows",
-    desc: "Empezamos desde cero, sin tecnicismos. Aprendes a usar la IA para automatizar tareas del día a día y crear flujos de trabajo que te ahorran horas. Ideal si nunca has tocado estas herramientas.",
+    badge: "Curso 1 · Principiantes",
+    tool: "Make.com",
+    title: "Automatizaciones con Make.com",
+    desc: "Empezamos desde cero, sin tecnicismos. Aprendes a automatizar tareas del día a día con Make.com y a crear flujos visuales que te ahorran horas. Ideal si nunca has tocado estas herramientas.",
     points: [
-      "Pensado para principiantes principiantes",
-      "Fundamentos de IA sin escribir código",
-      "Automatizaciones listas para usar",
+      "Pensado para principiantes totales",
+      "Automatizaciones sin escribir código",
+      "Flujos listos para usar en tu negocio",
     ],
+    soon: false,
+    precio: "₡19.000",
+    cta: "Quiero el Curso 1 (Make.com)",
+    waMsg:
+      "¡Hola Riverius! Me interesa el Curso 1 de Automatizaciones con Make.com (abre el 23 de junio). ¿Me cuentas cómo inscribirme?",
   },
   {
-    badge: "Nivel 2 · Avanzado",
-    title: "Agentes de IA",
-    desc: "El siguiente paso. Construyes agentes de IA que toman decisiones y ejecutan tareas por ti. Conectas herramientas, datos y modelos para resolver problemas reales de forma autónoma.",
+    badge: "Curso 2 · Avanzado",
+    tool: "n8n",
+    title: "Automatizaciones con n8n",
+    desc: "El siguiente paso. Construyes automatizaciones y agentes más potentes con n8n, conectando herramientas, datos y modelos de IA para resolver problemas reales de forma autónoma.",
     points: [
       "Para quienes ya dominan lo básico",
-      "Agentes que trabajan por ti",
-      "Casos de uso reales y avanzados",
+      "Workflows y agentes avanzados",
+      "Casos de uso reales y autohospedados",
     ],
+    soon: false,
+    precio: "₡19.000",
+    cta: "Quiero el Curso 2 (n8n)",
+    waMsg:
+      "¡Hola Riverius! Me interesa el Curso 2 de Automatizaciones con n8n. ¿Me cuentas fechas y cómo inscribirme?",
   },
+  {
+    badge: "Curso 3 · Próximamente",
+    tool: "Copilot Studio",
+    title: "Agentes con Copilot Studio",
+    desc: "Muy pronto. Crearás agentes de IA dentro del ecosistema de Microsoft con Copilot Studio, listos para integrarse en el trabajo diario de equipos y empresas.",
+    points: [
+      "Ecosistema Microsoft / Copilot",
+      "Agentes para equipos y empresas",
+      "Lista de espera disponible ya",
+    ],
+    soon: true,
+    precio: null,
+    cta: "Avísame cuando abra",
+    waMsg:
+      "¡Hola Riverius! Quiero entrar a la lista de espera del Curso 3 de Agentes con Copilot Studio. Avísame cuando abra.",
+  },
+];
+
+/* Hechos comunes a todos los cursos (formato, duración, etc.) */
+const cursoFacts = [
+  { Icon: ClockIcon, label: "6 semanas · clases de 2 h" },
+  { Icon: UsersIcon, label: "En vivo, virtual y grupal" },
+  { Icon: PlayIcon, label: "Queda grabado para ti" },
+  { Icon: SparkIcon, label: "Recursos y ejercicios para siempre" },
+];
+
+/* Preguntas frecuentes (manejo de objeciones) */
+const faqs = [
+  {
+    q: "¿Necesito saber programar?",
+    a: "No. Empezamos desde cero con herramientas visuales (Make.com, n8n). Si sabes usar un navegador, puedes con esto.",
+  },
+  {
+    q: "¿Cuánto dura y cómo son las clases?",
+    a: "Cada curso dura 6 semanas, con clases en vivo de 2 horas. Son virtuales y grupales, así aprendes con otras personas y resuelves dudas en el momento.",
+  },
+  {
+    q: "¿Cuánto cuesta?",
+    a: "₡19.000 quincenales durante el curso. Sin sorpresas: lo que ves es lo que pagas.",
+  },
+  {
+    q: "¿Hay descuento si pago todo de una vez?",
+    a: "Sí. Si pagas el curso completo por adelantado, obtienes un descuento. Escríbeme por WhatsApp y te paso el precio con el descuento aplicado.",
+  },
+  {
+    q: "¿Si no puedo asistir en vivo o me pierdo una clase?",
+    a: "Todas las clases quedan grabadas y la grabación, la presentación y los ejercicios son tuyos para siempre. Avanzas a tu ritmo.",
+  },
+  {
+    q: "¿Qué necesito para empezar?",
+    a: "Solo una computadora con internet y ganas de aprender. Las herramientas tienen planes gratuitos suficientes para el curso.",
+  },
+  {
+    q: "¿Cómo me inscribo?",
+    a: "Me escribes por WhatsApp, resolvemos tus dudas y te paso el paso a paso para reservar tu cupo. Respondo personalmente.",
+  },
+];
+
+/* Clips de apoyo 1:1 (próximamente). Cuando tengas los IDs de Wistia,
+   reemplaza wistiaId: null por el ID y se incrustará el video automáticamente. */
+const clips1a1: { titulo: string; wistiaId: string | null }[] = [
+  { titulo: "Resolviendo un error en pleno flujo de Make", wistiaId: null },
+  { titulo: "Ajustando un escenario en vivo con una estudiante", wistiaId: null },
+  { titulo: "Explicando un módulo paso a paso", wistiaId: null },
+  { titulo: "Depurando una automatización juntos", wistiaId: null },
+  { titulo: "Revisión 1:1 de un proyecto real", wistiaId: null },
+  { titulo: "Conectando una API durante la clase", wistiaId: null },
 ];
 
 const credenciales = [
-  { Icon: SparkIcon, title: "Experto en IA", sub: "+2 años enseñando y aplicando inteligencia artificial" },
-  { Icon: StarIcon, title: "Top Rated en Upwork", sub: "Reconocido entre los mejores freelancers de la plataforma" },
-  { Icon: CodeIcon, title: "Ingeniero de software", sub: "+5 años construyendo productos y sistemas reales" },
+  {
+    Icon: GlobeIcon,
+    title: "+40 clientes en todo el mundo",
+    sub: "He trabajado con personas y empresas de Estados Unidos, Canadá, España, Arabia Saudita, Alemania y muchos otros países.",
+  },
+  {
+    Icon: SparkIcon,
+    title: "Experto en IA",
+    sub: "+2 años enseñando y aplicando inteligencia artificial todos los días.",
+  },
+  {
+    Icon: CodeIcon,
+    title: "Ingeniero de software",
+    sub: "+5 años construyendo productos y sistemas reales.",
+  },
 ];
 
-function WhatsAppButton({ label, full = false }: { label: string; full?: boolean }) {
+const redes = [
+  { Icon: InstagramIcon, label: "Instagram", href: "https://instagram.com/mriverius" },
+  { Icon: YouTubeIcon, label: "YouTube", href: "https://youtube.com/@mriverius" },
+  { Icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/in/mriverius" },
+];
+
+function WhatsAppButton({
+  label,
+  href = WHATSAPP_LINK,
+  full = false,
+  variant = "solid",
+}: {
+  label: string;
+  href?: string;
+  full?: boolean;
+  variant?: "solid" | "ghost";
+}) {
+  const styles =
+    variant === "ghost"
+      ? "bg-transparent border-cyan/25 text-cyan/80 hover:bg-cyan/10 hover:text-cyan"
+      : "bg-cyan/15 border-cyan/30 text-cyan hover:bg-cyan/25 glow-cyan-hover";
   return (
     <a
-      href={WHATSAPP_LINK}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${full ? "w-full" : ""} inline-flex items-center justify-center gap-2.5 py-4 px-8 rounded-xl bg-cyan/15 border border-cyan/30 text-cyan text-lg font-semibold transition-all duration-300 hover:bg-cyan/25 glow-cyan-hover hover:scale-[1.02]`}
+      className={`${full ? "w-full" : ""} inline-flex items-center justify-center gap-2.5 py-4 px-8 rounded-xl border text-lg font-semibold transition-all duration-300 hover:scale-[1.02] ${styles}`}
     >
       <ChatIcon className="w-5 h-5" />
       {label}
@@ -207,28 +361,42 @@ export default function AcademiaPage() {
     <div className="flex flex-col flex-1 items-center bg-grid min-h-screen relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <main className="flex flex-col items-center gap-24 py-16 px-6 w-full max-w-4xl z-10">
+      {/* Banner con countdown — arriba de todo */}
+      <CourseBanner ctaLink={BANNER_LINK} />
+
+      <main className="flex flex-col items-center gap-24 py-16 px-6 w-full max-w-6xl z-10">
         <div className="w-full max-w-lg">
           <Breadcrumb items={[{ label: "Academia" }]} />
         </div>
 
         {/* ───────────── HERO ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-6 text-center">
           <span className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-cyan/80 border border-cyan/20 rounded-full px-4 py-1.5">
             <SparkIcon className="w-4 h-4" />
             Academia Riverius
           </span>
           <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.1]">
-            Antes yo tampoco entendía IA.{" "}
-            <span className="text-cyan glow-text">Ahora lo enseño.</span>
+            Un día yo tampoco sabía de IA.{" "}
+            <span className="text-cyan glow-text">Hoy soy un pro.</span>
           </h1>
           <p className="text-foreground/60 text-lg leading-relaxed max-w-2xl">
-            Te llevo de la mano desde cero hasta crear tus propios agentes de
-            inteligencia artificial. Sin tecnicismos, con ejemplos reales y a tu
-            ritmo.
+            Pasé de no entender la IA a vivir de ella — y ahora te enseño cómo.
+            Automatiza tu trabajo con Make.com y n8n para producir más en menos
+            tiempo y abrir nuevos ingresos.
           </p>
-          <div className="mt-2">
-            <WhatsAppButton label="Quiero más información" />
+
+          {/* Próxima cohorte */}
+          <span className="inline-flex items-center gap-2 text-sm text-foreground/80 bg-cyan/10 border border-cyan/25 rounded-full px-4 py-1.5">
+            <ClockIcon className="w-4 h-4 text-cyan" />
+            Próxima cohorte: <span className="font-semibold text-cyan">23 de junio</span>
+          </span>
+
+          <div className="flex flex-col items-center gap-2 mt-2">
+            <WhatsAppButton href={BANNER_LINK} label="Reservar mi cupo" />
+            <span className="text-foreground/40 text-sm">
+              Te respondo personalmente · sin compromiso
+            </span>
           </div>
 
           {/* Stats */}
@@ -243,9 +411,16 @@ export default function AcademiaPage() {
           </div>
         </section>
 
+        </Reveal>
+
         {/* ───────────── PRIMERA CLASE ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-6 w-full">
           <div className="flex flex-col items-center gap-3 text-center">
+            <span className="inline-flex items-center gap-1.5 text-xs tracking-widest uppercase text-cyan/80 border border-cyan/20 rounded-full px-3 py-1">
+              <BoltIcon className="w-3.5 h-3.5" />
+              Curso de Make.com
+            </span>
             <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
               <PlayIcon className="w-6 h-6" />
             </span>
@@ -253,8 +428,9 @@ export default function AcademiaPage() {
               Dale un vistazo a la primera clase
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Mira un fragmento real de la primera clase y descubre cómo enseño.
-              Si te gusta cómo explico, esto es para ti.
+              Este es el cierre de la primera clase del curso de Make.com: el
+              momento en que completamos juntos tu primera automatización
+              funcionando. Así enseño — paso a paso y con resultados reales.
             </p>
           </div>
           <div className="w-full rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
@@ -266,7 +442,10 @@ export default function AcademiaPage() {
           </div>
         </section>
 
+        </Reveal>
+
         {/* ───────────── POR QUÉ APRENDER IA ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-10 w-full">
           <div className="flex flex-col items-center gap-3 text-center">
             <h2 className="text-3xl font-bold text-foreground">
@@ -295,68 +474,102 @@ export default function AcademiaPage() {
           </div>
         </section>
 
-        {/* ───────────── NIVELES ───────────── */}
+        </Reveal>
+
+        {/* ───────────── CURSOS ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-8 w-full">
           <div className="flex flex-col items-center gap-3 text-center">
             <h2 className="text-3xl font-bold text-foreground">
-              Dos niveles, un camino claro
+              Tres cursos, un camino claro
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Empieza donde estés. Avanza al ritmo que te haga sentido.
+              Empieza donde estés y avanza herramienta por herramienta. Cada
+              curso te lleva un nivel más allá.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-6 w-full">
-            {niveles.map((n) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            {cursos.map((c) => (
               <div
-                key={n.title}
-                className="flex flex-col gap-4 rounded-2xl border border-card-border bg-card-bg/80 backdrop-blur-sm p-8 transition-all duration-300 hover:border-cyan/50 glow-cyan-hover"
+                key={c.title}
+                className={`flex flex-col gap-4 rounded-2xl border bg-card-bg/80 backdrop-blur-sm p-8 transition-all duration-300 ${
+                  c.soon
+                    ? "border-card-border opacity-90"
+                    : "border-card-border hover:border-cyan/50 glow-cyan-hover"
+                }`}
               >
-                <span className="text-xs tracking-widest uppercase text-cyan/70">
-                  {n.badge}
-                </span>
-                <h3 className="text-2xl font-bold text-foreground">{n.title}</h3>
-                <p className="text-foreground/60 leading-relaxed">{n.desc}</p>
-                <ul className="flex flex-col gap-2.5 mt-2">
-                  {n.points.map((p) => (
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs tracking-widest uppercase text-cyan/70">
+                    {c.badge}
+                  </span>
+                  {c.soon && (
+                    <span className="text-[10px] tracking-widest uppercase text-foreground/40 border border-card-border rounded-full px-2.5 py-0.5">
+                      Próximamente
+                    </span>
+                  )}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="inline-flex items-center gap-1.5 self-start rounded-md bg-cyan/10 border border-cyan/20 px-2.5 py-1 text-xs font-semibold text-cyan">
+                    <BoltIcon className="w-3.5 h-3.5" />
+                    {c.tool}
+                  </span>
+                  <h3 className="text-2xl font-bold text-foreground mt-1">{c.title}</h3>
+                </div>
+                <p className="text-foreground/60 leading-relaxed text-sm">{c.desc}</p>
+                <ul className="flex flex-col gap-2.5 mt-1">
+                  {c.points.map((p) => (
                     <li key={p} className="flex items-start gap-2.5 text-foreground/70 text-sm">
                       <CheckIcon className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
                       <span>{p}</span>
                     </li>
                   ))}
                 </ul>
+
+                {/* Hechos del curso */}
+                <ul className="flex flex-col gap-2 mt-2 pt-4 border-t border-card-border">
+                  {cursoFacts.map(({ Icon, label }) => (
+                    <li key={label} className="flex items-center gap-2.5 text-foreground/60 text-xs">
+                      <Icon className="w-4 h-4 text-cyan/70 shrink-0" />
+                      <span>{label}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Precio */}
+                <div className="mt-auto pt-4">
+                  {c.precio ? (
+                    <p className="mb-3 text-sm text-foreground/60">
+                      <span className="text-2xl font-bold text-foreground">{c.precio}</span>{" "}
+                      <span className="text-foreground/50">/ quincena</span>
+                    </p>
+                  ) : (
+                    <p className="mb-3 text-sm text-foreground/50">
+                      Únete a la <span className="text-cyan">lista de espera</span>
+                    </p>
+                  )}
+                  <a
+                    href={waLink(c.waMsg)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl border text-sm font-semibold text-center leading-snug transition-all duration-300 ${
+                      c.soon
+                        ? "bg-transparent border-cyan/25 text-cyan/80 hover:bg-cyan/10 hover:text-cyan"
+                        : "bg-cyan/15 border-cyan/30 text-cyan hover:bg-cyan/25 glow-cyan-hover"
+                    }`}
+                  >
+                    <ChatIcon className="w-4 h-4 shrink-0" />
+                    {c.cta}
+                  </a>
+                </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ───────────── SOBRE MÍ ───────────── */}
-        <section className="flex flex-col items-center gap-8 w-full">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <h2 className="text-3xl font-bold text-foreground">
-              Quién te va a enseñar
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              No soy un teórico. Soy ingeniero de software que vive de construir
-              y aplicar IA todos los días — y que disfruta enseñarla.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-5 w-full">
-            {credenciales.map(({ Icon, title, sub }) => (
-              <div
-                key={title}
-                className="flex flex-col items-center text-center gap-3 rounded-2xl border border-card-border bg-card-bg/70 backdrop-blur-sm p-7 transition-all duration-300 hover:border-cyan/40"
-              >
-                <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-                  <Icon className="w-6 h-6" />
-                </span>
-                <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-                <p className="text-foreground/55 text-sm leading-relaxed">{sub}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        </Reveal>
 
         {/* ───────────── TESTIMONIOS ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-8 w-full">
           <div className="flex flex-col items-center gap-3 text-center">
             <h2 className="text-3xl font-bold text-foreground">
@@ -368,7 +581,7 @@ export default function AcademiaPage() {
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-6 w-full max-w-2xl">
-            {[VIDEOS.testimonio1, VIDEOS.testimonio2].map((t, i) => (
+            {[VIDEOS.testimonio1, VIDEOS.testimonio2].map((t) => (
               <div
                 key={t.id}
                 className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
@@ -377,32 +590,205 @@ export default function AcademiaPage() {
                 <div className="flex items-center gap-2 px-2 pb-1">
                   <StarIcon className="w-4 h-4 text-cyan" />
                   <span className="text-foreground/80 text-sm font-medium">{t.nombre}</span>
-                  <span className="text-foreground/40 text-xs">· Estudiante {i + 1}</span>
+                  <span className="text-foreground/40 text-xs">· Curso de Make.com</span>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
+        </Reveal>
+
+        {/* ───────────── SOBRE MÍ ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
+        <section className="flex flex-col items-center gap-10 w-full">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <h2 className="text-3xl font-bold text-foreground">
+              Quién te va a enseñar
+            </h2>
+            <p className="text-foreground/60 max-w-2xl leading-relaxed">
+              No soy un teórico. Soy ingeniero de software que vive de construir
+              y aplicar IA todos los días — y que disfruta enseñarla.
+            </p>
+          </div>
+
+          <div className="flex flex-col lg:flex-row items-stretch gap-8 w-full">
+            {/* Foto + redes */}
+            <div className="shrink-0 w-full max-w-xs mx-auto lg:mx-0 flex flex-col gap-4">
+              <div className="relative overflow-hidden rounded-2xl border border-cyan/25 bg-card-bg/60 glow-cyan-hover" style={{ aspectRatio: 3 / 4 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/mariano.png"
+                  alt="Mariano Riverius, tu profesor en la Academia"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/70 to-transparent p-4 pt-10">
+                  <span className="text-foreground font-semibold">Mariano · Riverius</span>
+                  <span className="block text-cyan/80 text-xs tracking-widest uppercase">
+                    Tu profesor
+                  </span>
+                </div>
+              </div>
+
+              {/* Redes sociales */}
+              <div className="flex items-center justify-center gap-3">
+                {redes.map(({ Icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${label} de Mariano (@mriverius)`}
+                    className="flex items-center justify-center w-11 h-11 rounded-xl border border-card-border bg-card-bg/70 text-foreground/70 transition-all duration-300 hover:border-cyan/50 hover:text-cyan glow-cyan-hover"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
+              <p className="text-center text-foreground/40 text-xs">
+                Sígueme en todas como <span className="text-cyan/70">@mriverius</span>
+              </p>
+            </div>
+
+            {/* Credenciales */}
+            <div className="flex flex-col gap-4 flex-1 w-full">
+              {/* Destacado Top Rated */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl border border-cyan/30 bg-cyan/10 p-6 glow-cyan">
+                <div className="flex items-baseline gap-2 shrink-0">
+                  <span className="text-4xl font-bold text-cyan glow-text">9.99%</span>
+                </div>
+                <p className="text-foreground/80 text-sm leading-relaxed">
+                  Soy <span className="font-semibold text-foreground">Top Rated en Upwork</span>,
+                  un nivel que solo alcanza el <span className="font-semibold text-cyan">9.99%</span>{" "}
+                  de los millones de freelancers de la plataforma.
+                </p>
+              </div>
+
+              {credenciales.map(({ Icon, title, sub }) => (
+                <div
+                  key={title}
+                  className="flex items-center gap-4 rounded-2xl border border-card-border bg-card-bg/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-cyan/40"
+                >
+                  <span className="shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+                    <Icon className="w-6 h-6" />
+                  </span>
+                  <div className="flex flex-col gap-1">
+                    <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+                    <p className="text-foreground/55 text-sm leading-relaxed">{sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        </Reveal>
+
+        {/* ───────────── FAQ ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
+        <section className="flex flex-col items-center gap-8 w-full">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <h2 className="text-3xl font-bold text-foreground">
+              Preguntas frecuentes
+            </h2>
+            <p className="text-foreground/60 max-w-2xl leading-relaxed">
+              Lo que casi todo el mundo me pregunta antes de empezar.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4 w-full">
+            {faqs.map(({ q, a }) => (
+              <details
+                key={q}
+                className="group rounded-2xl border border-card-border bg-card-bg/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-cyan/40"
+              >
+                <summary className="flex items-center justify-between gap-3 cursor-pointer list-none text-foreground font-semibold">
+                  <span>{q}</span>
+                  <span className="shrink-0 text-cyan transition-transform duration-300 group-open:rotate-45">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="w-5 h-5" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </span>
+                </summary>
+                <p className="text-foreground/60 text-sm leading-relaxed mt-3">{a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        </Reveal>
+
+        {/* ───────────── CLIPS 1:1 ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
+        <section className="flex flex-col items-center gap-8 w-full">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+              <UsersIcon className="w-6 h-6" />
+            </span>
+            <h2 className="text-3xl font-bold text-foreground">
+              Te acompaño <span className="text-cyan glow-text">1:1</span> en cada clase
+            </h2>
+            <p className="text-foreground/60 max-w-2xl leading-relaxed">
+              No estás solo. Durante las clases resuelvo tus dudas en vivo, uno a
+              uno, hasta que todo te quede claro. Pronto subo clips reales de
+              estas sesiones.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+            {clips1a1.map((clip, i) => (
+              <div
+                key={i}
+                className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
+              >
+                {clip.wistiaId ? (
+                  <WistiaEmbed id={clip.wistiaId} aspect={16 / 9} title={clip.titulo} />
+                ) : (
+                  <div className="relative w-full overflow-hidden rounded-xl border border-dashed border-cyan/20 bg-background/60" style={{ aspectRatio: 16 / 9 }}>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center px-4">
+                      <span className="flex items-center justify-center w-10 h-10 rounded-full bg-cyan/10 border border-cyan/25 text-cyan">
+                        <PlayIcon className="w-5 h-5" />
+                      </span>
+                      <span className="text-xs uppercase tracking-widest text-cyan/70">
+                        Próximamente
+                      </span>
+                    </div>
+                  </div>
+                )}
+                <div className="flex items-center gap-2 px-2 pb-1">
+                  <ChatIcon className="w-4 h-4 text-cyan shrink-0" />
+                  <span className="text-foreground/70 text-sm leading-snug">{clip.titulo}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        </Reveal>
+
         {/* ───────────── CTA FINAL ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-6 text-center w-full rounded-2xl border border-cyan/20 bg-cyan/5 backdrop-blur-sm p-10 sm:p-14">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
             ¿Listo para dar el primer paso?
           </h2>
           <p className="text-foreground/60 text-lg max-w-xl leading-relaxed">
-            Escríbeme por WhatsApp y te cuento todo: niveles, fechas y cómo
-            inscribirte. Respondo personalmente.
+            Próxima cohorte: 23 de junio. Escríbeme por WhatsApp y te paso fechas,
+            precio y el paso a paso para inscribirte. Respondo personalmente.
           </p>
-          <WhatsAppButton label={`Escríbeme · +${WHATSAPP_NUMBER}`} />
+          <WhatsAppButton href={BANNER_LINK} label="Reservar mi cupo por WhatsApp" />
           <p className="text-foreground/30 text-sm">
             Sin compromiso. Resuelvo tus dudas antes de que decidas.
           </p>
         </section>
 
+        </Reveal>
+
         <p className="text-foreground/30 text-xs">
           © {new Date().getFullYear()} Riverius. Todos los derechos reservados.
         </p>
       </main>
+
+      {/* Botón flotante de WhatsApp (aparece al hacer scroll) */}
+      <FloatingWhatsApp href={BANNER_LINK} />
 
       {/* Popup temporizado (aparece tras 1 min en la página) */}
       <AcademiaPopup whatsappLink={WHATSAPP_LINK} />
