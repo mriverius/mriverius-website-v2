@@ -122,6 +122,15 @@ function BoltIcon({ className }: IconProps) {
     </svg>
   );
 }
+function HelpIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={base(className)} aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.2 9.3a2.8 2.8 0 0 1 5.4 1c0 1.9-2.8 2.5-2.8 2.5" />
+      <path d="M12 17h.01" />
+    </svg>
+  );
+}
 function GlobeIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={base(className)} aria-hidden="true">
@@ -279,15 +288,15 @@ const faqs = [
   },
 ];
 
-/* Clips de apoyo 1:1 (próximamente). Cuando tengas los IDs de Wistia,
+/* Clips de apoyo 1:1. Cuando tengas el ID de Wistia de un nuevo clip,
    reemplaza wistiaId: null por el ID y se incrustará el video automáticamente. */
-const clips1a1: { titulo: string; wistiaId: string | null }[] = [
-  { titulo: "Resolviendo un error en pleno flujo de Make", wistiaId: null },
-  { titulo: "Ajustando un escenario en vivo con una estudiante", wistiaId: null },
-  { titulo: "Explicando un módulo paso a paso", wistiaId: null },
-  { titulo: "Depurando una automatización juntos", wistiaId: null },
-  { titulo: "Revisión 1:1 de un proyecto real", wistiaId: null },
-  { titulo: "Conectando una API durante la clase", wistiaId: null },
+const clips1a1: { titulo: string; wistiaId: string | null; aspect: number }[] = [
+  { titulo: "Ayudando a René a conectar ChatGPT", wistiaId: "qlrnlgt3dg", aspect: 1.6 },
+  { titulo: "Ayudando a Andrey con módulo de Airtable", wistiaId: "2hbkwhomzg", aspect: 16 / 9 },
+  { titulo: "Explicándole a Gino la IA agéntica", wistiaId: "4qiefwts69", aspect: 1.6 },
+  { titulo: "Ayudando a Beto a entender Jotform", wistiaId: "8ohicduqtk", aspect: 16 / 9 },
+  { titulo: "Ayudando a Melvin a corregir Google Forms", wistiaId: "xnwhlf8yys", aspect: 16 / 9 },
+  { titulo: "Ayudando a René a corregir un error en Gmail", wistiaId: "6v7qxzyhub", aspect: 1.6 },
 ];
 
 const credenciales = [
@@ -364,8 +373,8 @@ export default function AcademiaPage() {
       {/* Banner con countdown — arriba de todo */}
       <CourseBanner ctaLink={BANNER_LINK} />
 
-      <main className="flex flex-col items-center gap-24 py-16 px-6 w-full max-w-6xl z-10">
-        <div className="w-full max-w-lg">
+      <main className="flex flex-col items-center gap-24 pt-6 pb-16 px-6 w-full max-w-6xl z-10">
+        <div className="w-full max-w-lg -mb-16">
           <Breadcrumb items={[{ label: "Academia" }]} />
         </div>
 
@@ -688,6 +697,9 @@ export default function AcademiaPage() {
         <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-8 w-full">
           <div className="flex flex-col items-center gap-3 text-center">
+            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+              <HelpIcon className="w-6 h-6" />
+            </span>
             <h2 className="text-3xl font-bold text-foreground">
               Preguntas frecuentes
             </h2>
@@ -695,23 +707,46 @@ export default function AcademiaPage() {
               Lo que casi todo el mundo me pregunta antes de empezar.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-4 w-full">
-            {faqs.map(({ q, a }) => (
+          <div className="grid sm:grid-cols-2 gap-4 w-full items-start">
+            {faqs.map(({ q, a }, i) => (
               <details
                 key={q}
-                className="group rounded-2xl border border-card-border bg-card-bg/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-cyan/40"
+                className="group relative overflow-hidden rounded-2xl border border-card-border bg-card-bg/70 backdrop-blur-sm transition-all duration-300 hover:border-cyan/40 open:border-cyan/45 open:bg-cyan/[0.04] open:shadow-[0_0_30px_-12px_var(--color-cyan)]"
               >
-                <summary className="flex items-center justify-between gap-3 cursor-pointer list-none text-foreground font-semibold">
-                  <span>{q}</span>
+                <span
+                  className="absolute left-0 top-0 h-full w-1 origin-top scale-y-0 bg-cyan transition-transform duration-300 group-open:scale-y-100"
+                  aria-hidden="true"
+                />
+                <summary className="flex items-center gap-4 cursor-pointer list-none p-5 sm:p-6 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+                  <span className="shrink-0 flex items-center justify-center w-9 h-9 rounded-lg bg-cyan/10 border border-cyan/20 text-cyan text-sm font-bold tabular-nums transition-colors duration-300 group-open:bg-cyan group-open:text-background">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="flex-1 text-foreground font-semibold leading-snug">{q}</span>
                   <span className="shrink-0 text-cyan transition-transform duration-300 group-open:rotate-45">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="w-5 h-5" aria-hidden="true">
                       <path d="M12 5v14M5 12h14" />
                     </svg>
                   </span>
                 </summary>
-                <p className="text-foreground/60 text-sm leading-relaxed mt-3">{a}</p>
+                <div className="pr-5 sm:pr-6 pb-5 sm:pb-6 pl-[3.5rem] sm:pl-[3.75rem]">
+                  <p className="text-foreground/60 text-sm leading-relaxed">{a}</p>
+                </div>
               </details>
             ))}
+          </div>
+
+          {/* Pregunta abierta → WhatsApp */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-center text-sm text-foreground/60">
+            <span>¿No ves tu pregunta aquí?</span>
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-semibold text-cyan hover:underline underline-offset-4"
+            >
+              <ChatIcon className="w-4 h-4 shrink-0" />
+              Escríbeme y te respondo personalmente
+            </a>
           </div>
         </section>
 
@@ -729,18 +764,18 @@ export default function AcademiaPage() {
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
               No estás solo. Durante las clases resuelvo tus dudas en vivo, uno a
-              uno, hasta que todo te quede claro. Pronto subo clips reales de
-              estas sesiones.
+              uno, hasta que todo te quede claro. Estos son clips reales de
+              esas sesiones.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full items-stretch">
             {clips1a1.map((clip, i) => (
               <div
                 key={i}
-                className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
+                className="flex flex-col gap-3 h-full rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
               >
                 {clip.wistiaId ? (
-                  <WistiaEmbed id={clip.wistiaId} aspect={16 / 9} title={clip.titulo} />
+                  <WistiaEmbed id={clip.wistiaId} aspect={clip.aspect} title={clip.titulo} />
                 ) : (
                   <div className="relative w-full overflow-hidden rounded-xl border border-dashed border-cyan/20 bg-background/60" style={{ aspectRatio: 16 / 9 }}>
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center px-4">
@@ -753,7 +788,7 @@ export default function AcademiaPage() {
                     </div>
                   </div>
                 )}
-                <div className="flex items-center gap-2 px-2 pb-1">
+                <div className="flex items-center gap-2 px-2 pb-1 mt-auto">
                   <ChatIcon className="w-4 h-4 text-cyan shrink-0" />
                   <span className="text-foreground/70 text-sm leading-snug">{clip.titulo}</span>
                 </div>
