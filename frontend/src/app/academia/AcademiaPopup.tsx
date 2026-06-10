@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SHOW_AFTER_MS = 60_000; // 1 minuto en la página
 
@@ -23,6 +23,9 @@ function ChatIcon() {
 
 export default function AcademiaPopup({ whatsappLink }: { whatsappLink: string }) {
   const [open, setOpen] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const lastFocusedRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (sessionStorage.getItem("academia_popup_seen") === "1") return;
@@ -33,7 +36,52 @@ export default function AcademiaPopup({ whatsappLink }: { whatsappLink: string }
   const close = () => {
     setOpen(false);
     sessionStorage.setItem("academia_popup_seen", "1");
+    // Devolver el foco al elemento que lo tenía antes de abrir
+    lastFocusedRef.current?.focus?.();
   };
+
+  // Gestión de foco, trampa de foco, Escape y bloqueo de scroll mientras está abierto
+  useEffect(() => {
+    if (!open) return;
+
+    lastFocusedRef.current = document.activeElement as HTMLElement | null;
+    closeBtnRef.current?.focus();
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+        return;
+      }
+      if (e.key === "Tab") {
+        const node = dialogRef.current;
+        if (!node) return;
+        const focusables = node.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   if (!open) return null;
 
@@ -42,13 +90,22 @@ export default function AcademiaPopup({ whatsappLink }: { whatsappLink: string }
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={close}
+        aria-hidden="true"
       />
 
-      <div className="relative w-full max-w-md rounded-2xl border border-cyan/25 bg-dark-blue p-8 sm:p-10 shadow-2xl shadow-black/50 glow-cyan animate-[fadeUp_0.4s_ease-out]">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="academia-popup-title"
+        aria-describedby="academia-popup-desc"
+        className="relative w-full max-w-md rounded-2xl border border-cyan/25 bg-dark-blue p-8 sm:p-10 shadow-2xl shadow-black/50 glow-cyan animate-[fadeUp_0.4s_ease-out]"
+      >
         <button
+          ref={closeBtnRef}
           onClick={close}
           aria-label="Cerrar"
-          className="absolute top-4 right-4 text-foreground/40 hover:text-foreground transition-colors cursor-pointer"
+          className="absolute top-4 right-4 rounded-md text-foreground/65 hover:text-foreground transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-cyan/60"
         >
           <svg
             viewBox="0 0 24 24"
@@ -67,10 +124,10 @@ export default function AcademiaPopup({ whatsappLink }: { whatsappLink: string }
           <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
             <ChatIcon />
           </div>
-          <h3 className="text-2xl font-bold text-foreground leading-tight">
+          <h3 id="academia-popup-title" className="text-2xl font-bold text-foreground leading-tight">
             Da el primer paso hoy
           </h3>
-          <p className="text-foreground/60 leading-relaxed">
+          <p id="academia-popup-desc" className="text-foreground/60 leading-relaxed">
             Veo que te interesa aprender IA. No lo dejes para después: escríbeme
             y te ayudo a definir por dónde empezar. Respondo personalmente.
           </p>
@@ -86,7 +143,7 @@ export default function AcademiaPopup({ whatsappLink }: { whatsappLink: string }
           </a>
           <button
             onClick={close}
-            className="text-foreground/30 text-sm hover:text-foreground/50 transition-colors cursor-pointer"
+            className="rounded-md text-foreground/60 text-sm hover:text-foreground transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-cyan/60 px-2 py-1"
           >
             Ahora no
           </button>

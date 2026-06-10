@@ -373,13 +373,13 @@ export default function AcademiaPage() {
       {/* Banner con countdown — arriba de todo */}
       <CourseBanner ctaLink={BANNER_LINK} />
 
-      <main className="flex flex-col items-center gap-24 pt-6 pb-16 px-6 w-full max-w-6xl z-10">
+      <main className="flex flex-col items-center gap-20 pt-6 pb-16 px-6 w-full max-w-6xl z-10">
         <div className="w-full max-w-lg -mb-16">
           <Breadcrumb items={[{ label: "Academia" }]} />
         </div>
 
-        {/* ───────────── HERO ───────────── */}
-        <Reveal className="w-full flex flex-col items-center">
+        {/* ───────────── HERO (sin Reveal: visible al instante para un LCP rápido) ───────────── */}
+        <div className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-6 text-center">
           <span className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-cyan/80 border border-cyan/20 rounded-full px-4 py-1.5">
             <SparkIcon className="w-4 h-4" />
@@ -403,7 +403,7 @@ export default function AcademiaPage() {
 
           <div className="flex flex-col items-center gap-2 mt-2">
             <WhatsAppButton href={BANNER_LINK} label="Reservar mi cupo" />
-            <span className="text-foreground/40 text-sm">
+            <span className="text-foreground/65 text-sm">
               Te respondo personalmente · sin compromiso
             </span>
           </div>
@@ -414,13 +414,13 @@ export default function AcademiaPage() {
               <div key={label} className="flex flex-col items-center gap-1.5">
                 <Icon className="w-5 h-5 text-cyan/70" />
                 <span className="text-2xl sm:text-3xl font-bold text-foreground">{value}</span>
-                <span className="text-foreground/50 text-xs sm:text-sm leading-tight">{label}</span>
+                <span className="text-foreground/60 text-xs sm:text-sm leading-tight">{label}</span>
               </div>
             ))}
           </div>
         </section>
 
-        </Reveal>
+        </div>
 
         {/* ───────────── PRIMERA CLASE ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
@@ -512,7 +512,7 @@ export default function AcademiaPage() {
                     {c.badge}
                   </span>
                   {c.soon && (
-                    <span className="text-[10px] tracking-widest uppercase text-foreground/40 border border-card-border rounded-full px-2.5 py-0.5">
+                    <span className="text-[10px] tracking-widest uppercase text-foreground/65 border border-card-border rounded-full px-2.5 py-0.5">
                       Próximamente
                     </span>
                   )}
@@ -549,10 +549,10 @@ export default function AcademiaPage() {
                   {c.precio ? (
                     <p className="mb-3 text-sm text-foreground/60">
                       <span className="text-2xl font-bold text-foreground">{c.precio}</span>{" "}
-                      <span className="text-foreground/50">/ quincena</span>
+                      <span className="text-foreground/60">/ quincena</span>
                     </p>
                   ) : (
-                    <p className="mb-3 text-sm text-foreground/50">
+                    <p className="mb-3 text-sm text-foreground/60">
                       Únete a la <span className="text-cyan">lista de espera</span>
                     </p>
                   )}
@@ -599,7 +599,7 @@ export default function AcademiaPage() {
                 <div className="flex items-center gap-2 px-2 pb-1">
                   <StarIcon className="w-4 h-4 text-cyan" />
                   <span className="text-foreground/80 text-sm font-medium">{t.nombre}</span>
-                  <span className="text-foreground/40 text-xs">· Curso de Make.com</span>
+                  <span className="text-foreground/65 text-xs">· Curso de Make.com</span>
                 </div>
               </div>
             ))}
@@ -654,7 +654,7 @@ export default function AcademiaPage() {
                   </a>
                 ))}
               </div>
-              <p className="text-center text-foreground/40 text-xs">
+              <p className="text-center text-foreground/65 text-xs">
                 Sígueme en todas como <span className="text-cyan/70">@mriverius</span>
               </p>
             </div>
@@ -683,7 +683,7 @@ export default function AcademiaPage() {
                   </span>
                   <div className="flex flex-col gap-1">
                     <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-                    <p className="text-foreground/55 text-sm leading-relaxed">{sub}</p>
+                    <p className="text-foreground/65 text-sm leading-relaxed">{sub}</p>
                   </div>
                 </div>
               ))}
@@ -810,14 +810,14 @@ export default function AcademiaPage() {
             precio y el paso a paso para inscribirte. Respondo personalmente.
           </p>
           <WhatsAppButton href={BANNER_LINK} label="Reservar mi cupo por WhatsApp" />
-          <p className="text-foreground/30 text-sm">
+          <p className="text-foreground/60 text-sm">
             Sin compromiso. Resuelvo tus dudas antes de que decidas.
           </p>
         </section>
 
         </Reveal>
 
-        <p className="text-foreground/30 text-xs">
+        <p className="text-foreground/60 text-xs">
           © {new Date().getFullYear()} Riverius. Todos los derechos reservados.
         </p>
       </main>
