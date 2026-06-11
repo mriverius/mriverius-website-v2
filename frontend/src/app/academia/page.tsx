@@ -15,6 +15,7 @@ export const metadata = {
    ────────────────────────────────────────────────────────────── */
 const VIDEOS = {
   primeraClase: { id: "oihg5jf7pc", aspect: 1.6 },
+  proyectoFinal: { id: "s87z54sae8", aspect: 1.7777777777777777 },
   testimonio1: { id: "u8rfe4702b", aspect: 0.558, nombre: "Andrey Espinoza" },
   testimonio2: { id: "4dtjtsoyfe", aspect: 0.555, nombre: "Bernal Barrantes" },
   testimonio3: { id: "6w058l392j", aspect: 0.5625, nombre: "Alonso Hidalgo" },
@@ -374,13 +375,13 @@ export default function AcademiaPage() {
       {/* Banner con countdown — arriba de todo */}
       <CourseBanner ctaLink={BANNER_LINK} />
 
-      <main className="flex flex-col items-center gap-20 pt-6 pb-16 px-6 w-full max-w-6xl z-10">
+      <main className="flex flex-col items-center gap-28 pt-6 pb-16 px-6 w-full max-w-6xl z-10">
         <div className="w-full max-w-lg -mb-16">
           <Breadcrumb items={[{ label: "Academia" }]} />
         </div>
 
         {/* ───────────── HERO (sin Reveal: visible al instante para un LCP rápido) ───────────── */}
-        <div className="w-full flex flex-col items-center">
+        <div className="w-full flex flex-col items-center mt-12">
         <section className="flex flex-col items-center gap-6 text-center">
           <span className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-cyan/80 border border-cyan/20 rounded-full px-4 py-1.5">
             <SparkIcon className="w-4 h-4" />
@@ -427,28 +428,55 @@ export default function AcademiaPage() {
         <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-6 w-full">
           <div className="flex flex-col items-center gap-3 text-center">
-            <span className="inline-flex items-center gap-1.5 text-xs tracking-widest uppercase text-cyan/80 border border-cyan/20 rounded-full px-3 py-1">
-              <BoltIcon className="w-3.5 h-3.5" />
-              Curso de Make.com
-            </span>
             <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
               <PlayIcon className="w-6 h-6" />
             </span>
             <h2 className="text-3xl font-bold text-foreground">
-              Dale un vistazo a la primera clase
+              De la primera clase al <span className="text-cyan glow-text">proyecto final</span>
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Este es el cierre de la primera clase del curso de Make.com: el
-              momento en que completamos juntos tu primera automatización
-              funcionando. Así enseño — paso a paso y con resultados reales.
+              Mira el recorrido completo del curso de Make.com: desde tu primera
+              automatización funcionando hasta la presentación de un proyecto
+              final real. Así enseño — paso a paso y con resultados reales.
             </p>
           </div>
-          <div className="w-full rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
-            <WistiaEmbed
-              id={VIDEOS.primeraClase.id}
-              aspect={VIDEOS.primeraClase.aspect}
-              title="Primera clase — Academia Riverius"
-            />
+          <div className="grid lg:grid-cols-2 gap-6 w-full">
+            <div className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
+              <WistiaEmbed
+                id={VIDEOS.primeraClase.id}
+                aspect={VIDEOS.primeraClase.aspect}
+                title="Primera clase — Academia Riverius"
+              />
+              <div className="flex items-center gap-2 px-2 pb-1">
+                <PlayIcon className="w-4 h-4 text-cyan shrink-0" />
+                <span className="flex items-baseline gap-1.5">
+                  <span className="text-foreground/80 text-sm font-medium">
+                    Primera clase
+                  </span>
+                  <span className="text-foreground/65 text-xs">
+                    · Tu primera automatización
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
+              <WistiaEmbed
+                id={VIDEOS.proyectoFinal.id}
+                aspect={VIDEOS.proyectoFinal.aspect}
+                title="Proyecto final de Alonso — Academia Riverius"
+              />
+              <div className="flex items-center gap-2 px-2 pb-1">
+                <PlayIcon className="w-4 h-4 text-cyan shrink-0" />
+                <span className="flex items-baseline gap-1.5">
+                  <span className="text-foreground/80 text-sm font-medium">
+                    Proyecto final
+                  </span>
+                  <span className="text-foreground/65 text-xs">
+                    · Presentación de Alonso
+                  </span>
+                </span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -458,6 +486,9 @@ export default function AcademiaPage() {
         <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-10 w-full">
           <div className="flex flex-col items-center gap-3 text-center">
+            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+              <TrendIcon className="w-6 h-6" />
+            </span>
             <h2 className="text-3xl font-bold text-foreground">
               ¿Por qué aprender IA <span className="text-cyan glow-text">ahora</span>?
             </h2>
@@ -490,8 +521,11 @@ export default function AcademiaPage() {
         <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-8 w-full">
           <div className="flex flex-col items-center gap-3 text-center">
+            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+              <BoltIcon className="w-6 h-6" />
+            </span>
             <h2 className="text-3xl font-bold text-foreground">
-              Tres cursos, un camino claro
+              Tres cursos, un <span className="text-cyan glow-text">camino claro</span>
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
               Empieza donde estés y avanza herramienta por herramienta. Cada
@@ -582,15 +616,18 @@ export default function AcademiaPage() {
         <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-8 w-full">
           <div className="flex flex-col items-center gap-3 text-center">
+            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+              <StarIcon className="w-6 h-6" />
+            </span>
             <h2 className="text-3xl font-bold text-foreground">
-              Lo que dicen mis estudiantes
+              Lo que dicen <span className="text-cyan glow-text">mis estudiantes</span>
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
               Historias reales de personas que empezaron justo donde tú estás
               ahora.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-6 w-full max-w-2xl">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
             {[VIDEOS.testimonio1, VIDEOS.testimonio2, VIDEOS.testimonio3].map((t) => (
               <div
                 key={t.id}
@@ -598,9 +635,11 @@ export default function AcademiaPage() {
               >
                 <WistiaEmbed id={t.id} aspect={t.aspect} title={`Testimonio de ${t.nombre}`} />
                 <div className="flex items-center gap-2 px-2 pb-1">
-                  <StarIcon className="w-4 h-4 text-cyan" />
-                  <span className="text-foreground/80 text-sm font-medium">{t.nombre}</span>
-                  <span className="text-foreground/65 text-xs">· Curso de Make.com</span>
+                  <StarIcon className="w-4 h-4 text-cyan shrink-0" />
+                  <span className="flex items-baseline gap-1.5">
+                    <span className="text-foreground/80 text-sm font-medium">{t.nombre}</span>
+                    <span className="text-foreground/65 text-xs">· Curso de Make.com</span>
+                  </span>
                 </div>
               </div>
             ))}
@@ -613,8 +652,11 @@ export default function AcademiaPage() {
         <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-10 w-full">
           <div className="flex flex-col items-center gap-3 text-center">
+            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+              <BriefcaseIcon className="w-6 h-6" />
+            </span>
             <h2 className="text-3xl font-bold text-foreground">
-              Quién te va a enseñar
+              Quién te va a <span className="text-cyan glow-text">enseñar</span>
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
               No soy un teórico. Soy ingeniero de software que vive de construir
@@ -702,7 +744,7 @@ export default function AcademiaPage() {
               <HelpIcon className="w-6 h-6" />
             </span>
             <h2 className="text-3xl font-bold text-foreground">
-              Preguntas frecuentes
+              Preguntas <span className="text-cyan glow-text">frecuentes</span>
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
               Lo que casi todo el mundo me pregunta antes de empezar.
@@ -789,8 +831,8 @@ export default function AcademiaPage() {
                     </div>
                   </div>
                 )}
-                <div className="flex items-center gap-2 px-2 pb-1 mt-auto">
-                  <ChatIcon className="w-4 h-4 text-cyan shrink-0" />
+                <div className="flex items-start gap-2 px-2 pb-1 mt-auto">
+                  <ChatIcon className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
                   <span className="text-foreground/70 text-sm leading-snug">{clip.titulo}</span>
                 </div>
               </div>
@@ -803,8 +845,11 @@ export default function AcademiaPage() {
         {/* ───────────── CTA FINAL ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
         <section className="flex flex-col items-center gap-6 text-center w-full rounded-2xl border border-cyan/20 bg-cyan/5 backdrop-blur-sm p-10 sm:p-14">
+          <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+            <BoltIcon className="w-6 h-6" />
+          </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            ¿Listo para dar el primer paso?
+            ¿Listo para dar el <span className="text-cyan glow-text">primer paso</span>?
           </h2>
           <p className="text-foreground/60 text-lg max-w-xl leading-relaxed">
             Próxima cohorte: 23 de junio. Escríbeme por WhatsApp y te paso fechas,
