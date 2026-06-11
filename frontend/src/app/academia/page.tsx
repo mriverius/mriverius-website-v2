@@ -19,6 +19,7 @@ const VIDEOS = {
   testimonio1: { id: "u8rfe4702b", aspect: 0.558, nombre: "Andrey Espinoza" },
   testimonio2: { id: "4dtjtsoyfe", aspect: 0.555, nombre: "Bernal Barrantes" },
   testimonio3: { id: "6w058l392j", aspect: 0.5625, nombre: "Alonso Hidalgo" },
+  testimonio4: { id: "sthpxqj6jk", aspect: 0.5625, nombre: "Esteban Hidalgo" },
 };
 
 const WHATSAPP_NUMBER = "50685973818";
@@ -628,7 +629,7 @@ export default function AcademiaPage() {
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-            {[VIDEOS.testimonio1, VIDEOS.testimonio2, VIDEOS.testimonio3].map((t) => (
+            {[VIDEOS.testimonio1, VIDEOS.testimonio2, VIDEOS.testimonio3, VIDEOS.testimonio4].map((t) => (
               <div
                 key={t.id}
                 className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
