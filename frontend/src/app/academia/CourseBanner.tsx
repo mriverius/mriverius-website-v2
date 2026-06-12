@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-/* Fecha de apertura del próximo curso: 23 de junio 2026, 00:00 (hora Costa Rica, UTC-6) */
-const LAUNCH_DATE = new Date("2026-06-23T00:00:00-06:00").getTime();
+/* Fecha de apertura del próximo curso: 16 de junio 2026, 7:00 pm (hora Costa Rica, UTC-6) */
+const LAUNCH_DATE = new Date("2026-06-16T19:00:00-06:00").getTime();
 
 type TimeLeft = {
   days: number;
@@ -78,12 +78,11 @@ export default function CourseBanner({ ctaLink }: { ctaLink: string }) {
         <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm sm:text-base text-foreground">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan/15 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-cyan">
             <BoltIcon />
-            Nuevo cupo
+            Quedan 5 cupos
           </span>
           <span className="font-semibold">
-            El curso de{" "}
-            <span className="text-cyan glow-text">Automatizaciones con Make.com</span>{" "}
-            abre el 23 de junio
+            <span className="text-cyan glow-text">Agentes con IA (n8n)</span>{" "}
+            abre el 16 de junio · 7–9 pm
           </span>
         </p>
 

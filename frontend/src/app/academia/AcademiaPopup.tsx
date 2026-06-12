@@ -125,11 +125,11 @@ export default function AcademiaPopup({ whatsappLink }: { whatsappLink: string }
             <ChatIcon />
           </div>
           <h3 id="academia-popup-title" className="text-2xl font-bold text-foreground leading-tight">
-            Da el primer paso hoy
+            Poné la IA a trabajar por vos
           </h3>
           <p id="academia-popup-desc" className="text-foreground/60 leading-relaxed">
-            Veo que te interesa aprender IA. No lo dejes para después: escríbeme
-            y te ayudo a definir por dónde empezar. Respondo personalmente.
+            Veo que te interesa aprender IA. No lo dejes para después: escribime
+            y te ayudo a definir por dónde empezar. Te respondo yo.
           </p>
           <a
             href={whatsappLink}

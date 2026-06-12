@@ -7,7 +7,7 @@ import Reveal from "./Reveal";
 export const metadata = {
   title: "Academia — Riverius",
   description:
-    "Usa la IA para ganar más y trabajar menos. Cursos de automatización con Make.com, n8n y Copilot Studio. +40 estudiantes formados.",
+    "Convertite en el profesional que sí le saca provecho a la IA. Cursos de automatización con Make.com y n8n: lo que te toma horas, en minutos. +40 alumnos formados.",
 };
 
 /* ──────────────────────────────────────────────────────────────
@@ -30,9 +30,9 @@ const WHATSAPP_LINK = waLink(
   "¡Hola Riverius! Vi la página de la Academia y quiero más información sobre los cursos de IA."
 );
 
-/* Banner / próximo curso (Make.com, abre 23 de junio) */
+/* Banner / próximo curso (Agentes con IA · n8n, abre 16 de junio 7–9 pm) */
 const BANNER_LINK = waLink(
-  "¡Hola Riverius! Vi que el curso de Automatizaciones con Make.com abre el 23 de junio. Quiero reservar mi cupo."
+  "¡Hola Riverius! Vi que el curso de Agentes con IA (n8n) abre el 16 de junio. Quiero apartar uno de los cupos que quedan."
 );
 
 /* ──────────────────────────────────────────────────────────────
@@ -180,67 +180,67 @@ const stats = [
 const razones = [
   {
     Icon: BoltIcon,
-    title: "Multiplicas tu productividad",
-    desc: "Lo que antes te tomaba horas, lo resuelves en minutos. La IA hace el trabajo repetitivo por ti.",
+    title: "Automatizás lo repetitivo",
+    desc: "Reportes, respuestas, organización de datos: lo que hacías una por una pasa a correr solo. Lo que te tomaba horas, en minutos.",
   },
   {
     Icon: TrendIcon,
-    title: "Te vuelves más valioso",
-    desc: "Quien domina la IA destaca en cualquier industria. Es la habilidad más demandada del mercado hoy.",
+    title: "Te volvés más valioso",
+    desc: "El que sabe usar IA entrega más, más rápido y mejor. No competís con la herramienta: la usás para entregar lo que otros todavía hacen a pulso.",
   },
   {
     Icon: ClockIcon,
-    title: "Recuperas tu tiempo",
-    desc: "Automatizas tareas tediosas y te enfocas en lo que de verdad importa para ti y tu negocio.",
+    title: "Recuperás tu tiempo",
+    desc: "Cada proceso que automatizás son horas que no volvés a gastar. Ese tiempo vuelve a tu semana, para el trabajo que de verdad importa (o para vos).",
   },
   {
     Icon: BriefcaseIcon,
-    title: "Abres nuevas oportunidades",
-    desc: "Nuevos servicios, nuevos clientes, nuevos ingresos. La IA es una puerta que apenas se está abriendo.",
+    title: "Abrís nuevas oportunidades",
+    desc: "Dominar esta habilidad te abre puertas: proyectos, roles y clientes que antes ni veías. Es la consecuencia de saber hacer lo que pocos saben hacer.",
   },
 ];
 
 const cursos = [
   {
-    badge: "Curso 1 · Principiantes",
+    badge: "Curso 1 · Empezá acá",
     tool: "Make.com",
     title: "Automatizaciones con Make.com",
-    desc: "Empezamos desde cero, sin tecnicismos. Aprendes a automatizar tareas del día a día con Make.com y a crear flujos visuales que te ahorran horas. Ideal si nunca has tocado estas herramientas.",
+    desc: "Para vos, que nunca automatizaste nada y querés tu primera victoria sin pelearte con código. Salís sabiendo armar flujos que conectan tus apps y hacen el trabajo repetitivo por vos, de principio a fin.",
     points: [
-      "Pensado para principiantes totales",
+      "Para principiantes totales",
       "Automatizaciones sin escribir código",
-      "Flujos listos para usar en tu negocio",
+      "Tu primer flujo funcionando en el negocio",
     ],
     soon: false,
     precio: "₡19.000",
     cta: "Quiero el Curso 1 (Make.com)",
     waMsg:
-      "¡Hola Riverius! Me interesa el Curso 1 de Automatizaciones con Make.com (abre el 23 de junio). ¿Me cuentas cómo inscribirme?",
+      "¡Hola Riverius! Me interesa el Curso 1 de Automatizaciones con Make.com. ¿Me contás cuándo abre y cómo inscribirme?",
   },
   {
-    badge: "Curso 2 · Avanzado",
+    badge: "Curso 2 · Cohorte activa",
     tool: "n8n",
-    title: "Automatizaciones con n8n",
-    desc: "El siguiente paso. Construyes automatizaciones y agentes más potentes con n8n, conectando herramientas, datos y modelos de IA para resolver problemas reales de forma autónoma.",
+    title: "Agentes con IA (n8n)",
+    desc: "Para quien ya entiende lo básico y quiere construir agentes de IA y automatizaciones serias, con más control y potencia. Vas a diseñar agentes que toman decisiones y sistemas que resuelven procesos completos, no tareas sueltas.",
     points: [
       "Para quienes ya dominan lo básico",
-      "Workflows y agentes avanzados",
-      "Casos de uso reales y autohospedados",
+      "Agentes que toman decisiones",
+      "Sistemas que resuelven procesos completos",
     ],
     soon: false,
     precio: "₡19.000",
-    cta: "Quiero el Curso 2 (n8n)",
+    cta: "Apartar mi cupo (n8n · 16 jun)",
     waMsg:
-      "¡Hola Riverius! Me interesa el Curso 2 de Automatizaciones con n8n. ¿Me cuentas fechas y cómo inscribirme?",
+      "¡Hola Riverius! Me interesa el Curso 2, Agentes con IA (n8n), que abre el 16 de junio. Quiero apartar uno de los cupos que quedan.",
   },
   {
     badge: "Curso 3 · Próximamente",
     tool: "Copilot Studio",
     title: "Agentes con Copilot Studio",
-    desc: "Muy pronto. Crearás agentes de IA dentro del ecosistema de Microsoft con Copilot Studio, listos para integrarse en el trabajo diario de equipos y empresas.",
+    desc: "Para quien quiere llevar la IA adentro de su empresa y sus herramientas del día a día. Vas a construir copilotos y asistentes a la medida de tu negocio. Detalles y fecha pronto.",
     points: [
       "Ecosistema Microsoft / Copilot",
-      "Agentes para equipos y empresas",
+      "Copilotos a la medida de tu negocio",
       "Lista de espera disponible ya",
     ],
     soon: true,
@@ -253,9 +253,9 @@ const cursos = [
 
 /* Hechos comunes a todos los cursos (formato, duración, etc.) */
 const cursoFacts = [
-  { Icon: ClockIcon, label: "6 semanas · clases de 2 h" },
+  { Icon: ClockIcon, label: "6 semanas · clases en vivo de 2 h" },
   { Icon: UsersIcon, label: "En vivo, virtual y grupal" },
-  { Icon: PlayIcon, label: "Queda grabado para ti" },
+  { Icon: PlayIcon, label: "Queda grabado para siempre" },
   { Icon: SparkIcon, label: "Recursos y ejercicios para siempre" },
 ];
 
@@ -263,31 +263,31 @@ const cursoFacts = [
 const faqs = [
   {
     q: "¿Necesito saber programar?",
-    a: "No. Empezamos desde cero con herramientas visuales (Make.com, n8n). Si sabes usar un navegador, puedes con esto.",
+    a: "No. Empezamos desde cero con herramientas visuales (Make.com, n8n). Si sabés usar tu computadora, podés con esto.",
   },
   {
-    q: "¿Cuánto dura y cómo son las clases?",
-    a: "Cada curso dura 6 semanas, con clases en vivo de 2 horas. Son virtuales y grupales, así aprendes con otras personas y resuelves dudas en el momento.",
+    q: "¿Cómo son las clases?",
+    a: "En vivo, virtuales y en grupo. Una sesión de 2 horas por semana, durante 6 semanas. Aprendés con otras personas y resolvés dudas en el momento.",
   },
   {
     q: "¿Cuánto cuesta?",
-    a: "₡19.000 quincenales durante el curso. Sin sorpresas: lo que ves es lo que pagas.",
+    a: "₡19.000 por quincena durante el curso. Sin sorpresas: lo que ves es lo que pagás.",
   },
   {
     q: "¿Hay descuento si pago todo de una vez?",
-    a: "Sí. Si pagas el curso completo por adelantado, obtienes un descuento. Escríbeme por WhatsApp y te paso el precio con el descuento aplicado.",
+    a: "Sí. Si pagás el curso completo por adelantado, obtenés un descuento. Escribime por WhatsApp y te paso el precio con el descuento aplicado.",
   },
   {
-    q: "¿Si no puedo asistir en vivo o me pierdo una clase?",
-    a: "Todas las clases quedan grabadas y la grabación, la presentación y los ejercicios son tuyos para siempre. Avanzas a tu ritmo.",
+    q: "¿Y si no puedo conectarme a una clase?",
+    a: "No hay problema: todas quedan grabadas y las podés ver cuando quieras, las veces que quieras. La grabación, la presentación y los ejercicios son tuyos para siempre.",
   },
   {
-    q: "¿Qué necesito para empezar?",
-    a: "Solo una computadora con internet y ganas de aprender. Las herramientas tienen planes gratuitos suficientes para el curso.",
+    q: "¿Para quién es esto?",
+    a: "Para profesionales y dueños de negocio que quieren ahorrar tiempo y trabajar mejor con IA. No es un curso para 'conseguir empleo': es para que dejes de hacer a mano lo que la IA puede hacer por vos.",
   },
   {
     q: "¿Cómo me inscribo?",
-    a: "Me escribes por WhatsApp, resolvemos tus dudas y te paso el paso a paso para reservar tu cupo. Respondo personalmente.",
+    a: "Por WhatsApp. Te respondo yo, en persona, resolvemos tus dudas y te paso el paso a paso para apartar tu cupo.",
   },
 ];
 
@@ -305,13 +305,13 @@ const clips1a1: { titulo: string; wistiaId: string | null; aspect: number }[] = 
 const credenciales = [
   {
     Icon: GlobeIcon,
-    title: "+40 clientes en todo el mundo",
-    sub: "He trabajado con personas y empresas de Estados Unidos, Canadá, España, Arabia Saudita, Alemania y muchos otros países.",
+    title: "Clientes internacionales",
+    sub: "He trabajado con personas y empresas de EE.UU., Canadá, España, Arabia Saudita, Alemania y más.",
   },
   {
     Icon: SparkIcon,
-    title: "Experto en IA",
-    sub: "+2 años enseñando y aplicando inteligencia artificial todos los días.",
+    title: "Enseño desde la trinchera",
+    sub: "+2 años enseñando IA y +40 alumnos. Lo que enseño es lo mismo que uso para ganarme la vida.",
   },
   {
     Icon: CodeIcon,
@@ -382,30 +382,31 @@ export default function AcademiaPage() {
         </div>
 
         {/* ───────────── HERO (sin Reveal: visible al instante para un LCP rápido) ───────────── */}
-        <div className="w-full flex flex-col items-center mt-12">
-        <section className="flex flex-col items-center gap-6 text-center">
+        <div className="w-full flex flex-col items-center">
+        <section id="inicio" className="flex flex-col items-center gap-6 text-center scroll-mt-28">
           <span className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-cyan/80 border border-cyan/20 rounded-full px-4 py-1.5">
             <SparkIcon className="w-4 h-4" />
             Academia Riverius
           </span>
           <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.1]">
-            Un día yo tampoco sabía de IA.{" "}
-            <span className="text-cyan glow-text">Hoy soy un pro.</span>
+            Convertite en el profesional que{" "}
+            <span className="text-cyan glow-text">sí le saca provecho a la IA.</span>
           </h1>
           <p className="text-foreground/60 text-lg leading-relaxed max-w-2xl">
-            Pasé de no entender la IA a vivir de ella — y ahora te enseño cómo.
-            Automatiza tu trabajo con Make.com y n8n para producir más en menos
-            tiempo y abrir nuevos ingresos.
+            Te enseño a automatizar tu trabajo con IA, paso a paso, en vivo y en
+            grupo. No es teoría: es lo mismo que uso todos los días como ingeniero
+            Top Rated en Upwork para clientes de EE.UU., Europa y Medio Oriente.
+            Lo que te toma horas, con IA lo resolvés en minutos.
           </p>
 
           {/* Próxima cohorte */}
           <span className="inline-flex items-center gap-2 text-sm text-foreground/80 bg-cyan/10 border border-cyan/25 rounded-full px-4 py-1.5">
             <ClockIcon className="w-4 h-4 text-cyan" />
-            Próxima cohorte: <span className="font-semibold text-cyan">23 de junio</span>
+            Cohorte activa: <span className="font-semibold text-cyan">Agentes con IA (n8n) · abre el 16 de junio</span>
           </span>
 
           <div className="flex flex-col items-center gap-2 mt-2">
-            <WhatsAppButton href={BANNER_LINK} label="Reservar mi cupo" />
+            <WhatsAppButton href={BANNER_LINK} label="Quiero recuperar mis horas" />
             <span className="text-foreground/65 text-sm">
               Te respondo personalmente · sin compromiso
             </span>
@@ -425,20 +426,94 @@ export default function AcademiaPage() {
 
         </div>
 
+        {/* ───────────── TESTIMONIOS ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
+        <section id="testimonios" className="flex flex-col items-center gap-8 w-full scroll-mt-28">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+              <StarIcon className="w-6 h-6" />
+            </span>
+            <h2 className="text-3xl font-bold text-foreground">
+              No lo digo yo. Lo dicen los{" "}
+              <span className="text-cyan glow-text">+40 que ya pasaron por acá</span>
+            </h2>
+            <p className="text-foreground/60 max-w-2xl leading-relaxed">
+              Alumnos reales contando qué construyeron y cuánto tiempo se ahorran
+              hoy. Esa es la diferencia entre oír hablar de IA y ponerla a trabajar.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            {[VIDEOS.testimonio1, VIDEOS.testimonio2, VIDEOS.testimonio3, VIDEOS.testimonio4].map((t) => (
+              <div
+                key={t.id}
+                className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
+              >
+                <WistiaEmbed id={t.id} aspect={t.aspect} title={`Testimonio de ${t.nombre}`} />
+                <div className="flex items-center gap-2 px-2 pb-1">
+                  <StarIcon className="w-4 h-4 text-cyan shrink-0" />
+                  <span className="flex items-baseline gap-1.5">
+                    <span className="text-foreground/80 text-sm font-medium">{t.nombre}</span>
+                    <span className="text-foreground/65 text-xs">· Curso de Make.com</span>
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        </Reveal>
+
+        {/* ───────────── POR QUÉ APRENDER IA ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
+        <section id="por-que" className="flex flex-col items-center gap-10 w-full scroll-mt-28">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+              <TrendIcon className="w-6 h-6" />
+            </span>
+            <h2 className="text-3xl font-bold text-foreground">
+              Cuatro cosas cambian cuando ponés la IA{" "}
+              <span className="text-cyan glow-text">a trabajar por vos</span>
+            </h2>
+            <p className="text-foreground/60 max-w-2xl leading-relaxed">
+              Casi todo el mundo oyó hablar de la IA. Muy pocos la convierten en
+              horas ahorradas y trabajo más valioso. Esa es la diferencia.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-5 w-full">
+            {razones.map(({ Icon, title, desc }) => (
+              <div
+                key={title}
+                className="flex gap-4 rounded-2xl border border-card-border bg-card-bg/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-cyan/40"
+              >
+                <span className="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/20 text-cyan">
+                  <Icon className="w-6 h-6" />
+                </span>
+                <div className="flex flex-col gap-1.5">
+                  <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+                  <p className="text-foreground/60 text-sm leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        </Reveal>
+
         {/* ───────────── PRIMERA CLASE ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
-        <section className="flex flex-col items-center gap-6 w-full">
+        <section id="recorrido" className="flex flex-col items-center gap-6 w-full scroll-mt-28">
           <div className="flex flex-col items-center gap-3 text-center">
             <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
               <PlayIcon className="w-6 h-6" />
             </span>
             <h2 className="text-3xl font-bold text-foreground">
-              De la primera clase al <span className="text-cyan glow-text">proyecto final</span>
+              De tu primera clase a tu primera{" "}
+              <span className="text-cyan glow-text">automatización funcionando</span>
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Mira el recorrido completo del curso de Make.com: desde tu primera
-              automatización funcionando hasta la presentación de un proyecto
-              final real. Así enseño — paso a paso y con resultados reales.
+              No te vas con apuntes: te vas con cosas que ya corren solas. Mirá el
+              recorrido real de un alumno, desde que abre la herramienta por primera
+              vez hasta que su proyecto final le ahorra trabajo cada semana.
             </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-6 w-full">
@@ -483,54 +558,19 @@ export default function AcademiaPage() {
 
         </Reveal>
 
-        {/* ───────────── POR QUÉ APRENDER IA ───────────── */}
-        <Reveal className="w-full flex flex-col items-center">
-        <section className="flex flex-col items-center gap-10 w-full">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-              <TrendIcon className="w-6 h-6" />
-            </span>
-            <h2 className="text-3xl font-bold text-foreground">
-              ¿Por qué aprender IA <span className="text-cyan glow-text">ahora</span>?
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              No se trata de moda. Se trata de no quedarte atrás mientras el
-              mundo cambia de velocidad.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-5 w-full">
-            {razones.map(({ Icon, title, desc }) => (
-              <div
-                key={title}
-                className="flex gap-4 rounded-2xl border border-card-border bg-card-bg/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-cyan/40"
-              >
-                <span className="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/20 text-cyan">
-                  <Icon className="w-6 h-6" />
-                </span>
-                <div className="flex flex-col gap-1.5">
-                  <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-                  <p className="text-foreground/60 text-sm leading-relaxed">{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        </Reveal>
-
         {/* ───────────── CURSOS ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
-        <section className="flex flex-col items-center gap-8 w-full">
+        <section id="cursos" className="flex flex-col items-center gap-8 w-full scroll-mt-28">
           <div className="flex flex-col items-center gap-3 text-center">
             <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
               <BoltIcon className="w-6 h-6" />
             </span>
             <h2 className="text-3xl font-bold text-foreground">
-              Tres cursos, un <span className="text-cyan glow-text">camino claro</span>
+              Tres cursos, un solo <span className="text-cyan glow-text">camino claro</span>
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Empieza donde estés y avanza herramienta por herramienta. Cada
-              curso te lleva un nivel más allá.
+              De cero a automatizar como un pro. No tenés que tomarlos todos de
+              una: empezás donde estás y avanzás a tu ritmo.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
@@ -613,45 +653,9 @@ export default function AcademiaPage() {
 
         </Reveal>
 
-        {/* ───────────── TESTIMONIOS ───────────── */}
-        <Reveal className="w-full flex flex-col items-center">
-        <section className="flex flex-col items-center gap-8 w-full">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-              <StarIcon className="w-6 h-6" />
-            </span>
-            <h2 className="text-3xl font-bold text-foreground">
-              Lo que dicen <span className="text-cyan glow-text">mis estudiantes</span>
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Historias reales de personas que empezaron justo donde tú estás
-              ahora.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-            {[VIDEOS.testimonio1, VIDEOS.testimonio2, VIDEOS.testimonio3, VIDEOS.testimonio4].map((t) => (
-              <div
-                key={t.id}
-                className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
-              >
-                <WistiaEmbed id={t.id} aspect={t.aspect} title={`Testimonio de ${t.nombre}`} />
-                <div className="flex items-center gap-2 px-2 pb-1">
-                  <StarIcon className="w-4 h-4 text-cyan shrink-0" />
-                  <span className="flex items-baseline gap-1.5">
-                    <span className="text-foreground/80 text-sm font-medium">{t.nombre}</span>
-                    <span className="text-foreground/65 text-xs">· Curso de Make.com</span>
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        </Reveal>
-
         {/* ───────────── SOBRE MÍ ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
-        <section className="flex flex-col items-center gap-10 w-full">
+        <section id="profesor" className="flex flex-col items-center gap-10 w-full scroll-mt-28">
           <div className="flex flex-col items-center gap-3 text-center">
             <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
               <BriefcaseIcon className="w-6 h-6" />
@@ -660,8 +664,10 @@ export default function AcademiaPage() {
               Quién te va a <span className="text-cyan glow-text">enseñar</span>
             </h2>
             <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              No soy un teórico. Soy ingeniero de software que vive de construir
-              y aplicar IA todos los días — y que disfruta enseñarla.
+              Soy Mariano Riverius, ingeniero de software con +5 años construyendo
+              sistemas reales. Un día yo tampoco sabía de IA: la aprendí en la
+              trinchera, resolviendo problemas por los que me pagan. Eso es
+              exactamente lo que te enseño.
             </p>
           </div>
 
@@ -713,7 +719,8 @@ export default function AcademiaPage() {
                 <p className="text-foreground/80 text-sm leading-relaxed">
                   Soy <span className="font-semibold text-foreground">Top Rated en Upwork</span>,
                   un nivel que solo alcanza el <span className="font-semibold text-cyan">9.99%</span>{" "}
-                  de los millones de freelancers de la plataforma.
+                  de los millones de freelancers de la plataforma. Si yo pude pasar
+                  de cero a vivir de esto, vos podés aprender a que la IA trabaje por vos.
                 </p>
               </div>
 
@@ -737,9 +744,56 @@ export default function AcademiaPage() {
 
         </Reveal>
 
+        {/* ───────────── CLIPS 1:1 ───────────── */}
+        <Reveal className="w-full flex flex-col items-center">
+        <section id="acompanamiento" className="flex flex-col items-center gap-8 w-full scroll-mt-28">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
+              <UsersIcon className="w-6 h-6" />
+            </span>
+            <h2 className="text-3xl font-bold text-foreground">
+              No te dejo solo: te acompaño <span className="text-cyan glow-text">1:1</span> en cada clase
+            </h2>
+            <p className="text-foreground/60 max-w-2xl leading-relaxed">
+              Si te trabás, lo resolvemos en el momento. Compartís pantalla, lo
+              vemos juntos y seguís. Así nadie se queda atrás. Estos son clips
+              reales del soporte en vivo.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full items-stretch">
+            {clips1a1.map((clip, i) => (
+              <div
+                key={i}
+                className="flex flex-col gap-3 h-full rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
+              >
+                {clip.wistiaId ? (
+                  <WistiaEmbed id={clip.wistiaId} aspect={clip.aspect} title={clip.titulo} />
+                ) : (
+                  <div className="relative w-full overflow-hidden rounded-xl border border-dashed border-cyan/20 bg-background/60" style={{ aspectRatio: 16 / 9 }}>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center px-4">
+                      <span className="flex items-center justify-center w-10 h-10 rounded-full bg-cyan/10 border border-cyan/25 text-cyan">
+                        <PlayIcon className="w-5 h-5" />
+                      </span>
+                      <span className="text-xs uppercase tracking-widest text-cyan/70">
+                        Próximamente
+                      </span>
+                    </div>
+                  </div>
+                )}
+                <div className="flex items-start gap-2 px-2 pb-1 mt-auto">
+                  <ChatIcon className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
+                  <span className="text-foreground/70 text-sm leading-snug">{clip.titulo}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        </Reveal>
+
         {/* ───────────── FAQ ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
-        <section className="flex flex-col items-center gap-8 w-full">
+        <section id="faq" className="flex flex-col items-center gap-8 w-full scroll-mt-28">
           <div className="flex flex-col items-center gap-3 text-center">
             <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
               <HelpIcon className="w-6 h-6" />
@@ -781,7 +835,7 @@ export default function AcademiaPage() {
 
           {/* Pregunta abierta → WhatsApp */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-center text-sm text-foreground/60">
-            <span>¿No ves tu pregunta aquí?</span>
+            <span>¿No ves tu pregunta acá?</span>
             <a
               href={WHATSAPP_LINK}
               target="_blank"
@@ -789,55 +843,8 @@ export default function AcademiaPage() {
               className="inline-flex items-center gap-2 font-semibold text-cyan hover:underline underline-offset-4"
             >
               <ChatIcon className="w-4 h-4 shrink-0" />
-              Escríbeme y te respondo personalmente
+              Escribime y te respondo personalmente
             </a>
-          </div>
-        </section>
-
-        </Reveal>
-
-        {/* ───────────── CLIPS 1:1 ───────────── */}
-        <Reveal className="w-full flex flex-col items-center">
-        <section className="flex flex-col items-center gap-8 w-full">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-              <UsersIcon className="w-6 h-6" />
-            </span>
-            <h2 className="text-3xl font-bold text-foreground">
-              Te acompaño <span className="text-cyan glow-text">1:1</span> en cada clase
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              No estás solo. Durante las clases resuelvo tus dudas en vivo, uno a
-              uno, hasta que todo te quede claro. Estos son clips reales de
-              esas sesiones.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full items-stretch">
-            {clips1a1.map((clip, i) => (
-              <div
-                key={i}
-                className="flex flex-col gap-3 h-full rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
-              >
-                {clip.wistiaId ? (
-                  <WistiaEmbed id={clip.wistiaId} aspect={clip.aspect} title={clip.titulo} />
-                ) : (
-                  <div className="relative w-full overflow-hidden rounded-xl border border-dashed border-cyan/20 bg-background/60" style={{ aspectRatio: 16 / 9 }}>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center px-4">
-                      <span className="flex items-center justify-center w-10 h-10 rounded-full bg-cyan/10 border border-cyan/25 text-cyan">
-                        <PlayIcon className="w-5 h-5" />
-                      </span>
-                      <span className="text-xs uppercase tracking-widest text-cyan/70">
-                        Próximamente
-                      </span>
-                    </div>
-                  </div>
-                )}
-                <div className="flex items-start gap-2 px-2 pb-1 mt-auto">
-                  <ChatIcon className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
-                  <span className="text-foreground/70 text-sm leading-snug">{clip.titulo}</span>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
@@ -845,18 +852,20 @@ export default function AcademiaPage() {
 
         {/* ───────────── CTA FINAL ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
-        <section className="flex flex-col items-center gap-6 text-center w-full rounded-2xl border border-cyan/20 bg-cyan/5 backdrop-blur-sm p-10 sm:p-14">
+        <section id="reservar" className="flex flex-col items-center gap-6 text-center w-full rounded-2xl border border-cyan/20 bg-cyan/5 backdrop-blur-sm p-10 sm:p-14 scroll-mt-28">
           <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
             <BoltIcon className="w-6 h-6" />
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            ¿Listo para dar el <span className="text-cyan glow-text">primer paso</span>?
+            La IA ya llegó. ¿La vas a poner{" "}
+            <span className="text-cyan glow-text">a trabajar por vos</span>?
           </h2>
           <p className="text-foreground/60 text-lg max-w-xl leading-relaxed">
-            Próxima cohorte: 23 de junio. Escríbeme por WhatsApp y te paso fechas,
-            precio y el paso a paso para inscribirte. Respondo personalmente.
+            La cohorte de <span className="text-foreground font-semibold">Agentes con IA (n8n)</span> abre
+            el 16 de junio (7–9 pm) y quedan 5 cupos. Escribime por WhatsApp: te
+            paso precio y el paso a paso para apartar el tuyo. Te respondo yo.
           </p>
-          <WhatsAppButton href={BANNER_LINK} label="Reservar mi cupo por WhatsApp" />
+          <WhatsAppButton href={BANNER_LINK} label="Apartar mi cupo por WhatsApp" />
           <p className="text-foreground/60 text-sm">
             Sin compromiso. Resuelvo tus dudas antes de que decidas.
           </p>
