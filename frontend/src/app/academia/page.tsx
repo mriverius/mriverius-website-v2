@@ -16,10 +16,10 @@ export const metadata = {
 const VIDEOS = {
   primeraClase: { id: "oihg5jf7pc", aspect: 1.6 },
   proyectoFinal: { id: "s87z54sae8", aspect: 1.7777777777777777 },
-  testimonio1: { id: "u8rfe4702b", aspect: 0.558, nombre: "Andrey Espinoza" },
-  testimonio2: { id: "4dtjtsoyfe", aspect: 0.555, nombre: "Bernal Barrantes" },
-  testimonio3: { id: "6w058l392j", aspect: 0.5625, nombre: "Alonso Hidalgo" },
-  testimonio4: { id: "sthpxqj6jk", aspect: 0.5625, nombre: "Esteban Hidalgo" },
+  testimonio1: { id: "u8rfe4702b", aspect: 0.558, nombre: "Andrey Espinoza", rol: "IT Recruiting Manager" },
+  testimonio2: { id: "4dtjtsoyfe", aspect: 0.555, nombre: "Bernal Barrantes", rol: "Contador" },
+  testimonio3: { id: "6w058l392j", aspect: 0.5625, nombre: "Alonso Hidalgo", rol: "Microbiólogo" },
+  testimonio4: { id: "sthpxqj6jk", aspect: 0.5625, nombre: "Esteban Hidalgo", rol: "Comunicador y Periodista" },
 };
 
 const WHATSAPP_NUMBER = "50685973818";
@@ -298,8 +298,8 @@ const clips1a1: { titulo: string; wistiaId: string | null; aspect: number }[] = 
   { titulo: "Ayudando a Andrey con módulo de Airtable", wistiaId: "2hbkwhomzg", aspect: 16 / 9 },
   { titulo: "Explicándole a Gino la IA agéntica", wistiaId: "4qiefwts69", aspect: 1.6 },
   { titulo: "Ayudando a Beto a entender Jotform", wistiaId: "8ohicduqtk", aspect: 16 / 9 },
-  { titulo: "Ayudando a Melvin a corregir Google Forms", wistiaId: "xnwhlf8yys", aspect: 16 / 9 },
   { titulo: "Ayudando a René a corregir un error en Gmail", wistiaId: "6v7qxzyhub", aspect: 1.6 },
+  { titulo: "Ayudando a Melvin a corregir Google Forms", wistiaId: "xnwhlf8yys", aspect: 16 / 9 },
 ];
 
 const credenciales = [
@@ -442,8 +442,8 @@ export default function AcademiaPage() {
               hoy. Esa es la diferencia entre oír hablar de IA y ponerla a trabajar.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-            {[VIDEOS.testimonio1, VIDEOS.testimonio2, VIDEOS.testimonio3, VIDEOS.testimonio4].map((t) => (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full">
+            {[VIDEOS.testimonio1, VIDEOS.testimonio3, VIDEOS.testimonio2, VIDEOS.testimonio4].map((t) => (
               <div
                 key={t.id}
                 className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
@@ -451,9 +451,9 @@ export default function AcademiaPage() {
                 <WistiaEmbed id={t.id} aspect={t.aspect} title={`Testimonio de ${t.nombre}`} />
                 <div className="flex items-center gap-2 px-2 pb-1">
                   <StarIcon className="w-4 h-4 text-cyan shrink-0" />
-                  <span className="flex items-baseline gap-1.5">
+                  <span className="flex flex-col leading-tight">
                     <span className="text-foreground/80 text-sm font-medium">{t.nombre}</span>
-                    <span className="text-foreground/65 text-xs">· Curso de Make.com</span>
+                    <span className="text-foreground/60 text-xs">{t.rol}</span>
                   </span>
                 </div>
               </div>
@@ -517,13 +517,13 @@ export default function AcademiaPage() {
             </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-6 w-full">
-            <div className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
+            <div className="flex flex-col gap-3 h-full rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
               <WistiaEmbed
                 id={VIDEOS.primeraClase.id}
                 aspect={VIDEOS.primeraClase.aspect}
                 title="Primera clase — Academia Riverius"
               />
-              <div className="flex items-center gap-2 px-2 pb-1">
+              <div className="flex items-center gap-2 px-2 pb-1 mt-auto min-h-[2.25rem]">
                 <PlayIcon className="w-4 h-4 text-cyan shrink-0" />
                 <span className="flex items-baseline gap-1.5">
                   <span className="text-foreground/80 text-sm font-medium">
@@ -535,13 +535,13 @@ export default function AcademiaPage() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
+            <div className="flex flex-col gap-3 h-full rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
               <WistiaEmbed
                 id={VIDEOS.proyectoFinal.id}
                 aspect={VIDEOS.proyectoFinal.aspect}
                 title="Proyecto final de Alonso — Academia Riverius"
               />
-              <div className="flex items-center gap-2 px-2 pb-1">
+              <div className="flex items-center gap-2 px-2 pb-1 mt-auto min-h-[2.25rem]">
                 <PlayIcon className="w-4 h-4 text-cyan shrink-0" />
                 <span className="flex items-baseline gap-1.5">
                   <span className="text-foreground/80 text-sm font-medium">
