@@ -862,7 +862,7 @@ export default function AcademiaPage() {
           </h2>
           <p className="text-foreground/60 text-lg max-w-xl leading-relaxed">
             La cohorte de <span className="text-foreground font-semibold">Agentes con IA (n8n)</span> abre
-            el 16 de junio (7–9 pm) y quedan 5 cupos. Escribime por WhatsApp: te
+            el 16 de junio (7–9 pm) y quedan 4 cupos. Escribime por WhatsApp: te
             paso precio y el paso a paso para apartar el tuyo. Te respondo yo.
           </p>
           <WhatsAppButton href={BANNER_LINK} label="Apartar mi cupo por WhatsApp" />

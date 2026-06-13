@@ -78,7 +78,7 @@ export default function CourseBanner({ ctaLink }: { ctaLink: string }) {
         <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm sm:text-base text-foreground">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan/15 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-cyan">
             <BoltIcon />
-            Quedan 5 cupos
+            Quedan 4 cupos
           </span>
           <span className="font-semibold">
             <span className="text-cyan glow-text">Agentes con IA (n8n)</span>{" "}
