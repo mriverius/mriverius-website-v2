@@ -1,8 +1,10 @@
+import type { ComponentType, ReactNode } from "react";
 import Breadcrumb from "../components/Breadcrumb";
 import AcademiaPopup from "./AcademiaPopup";
 import CourseBanner from "./CourseBanner";
 import FloatingWhatsApp from "./FloatingWhatsApp";
 import Reveal from "./Reveal";
+import Testimonios from "./Testimonios";
 
 export const metadata = {
   title: "Academia — Riverius",
@@ -89,13 +91,6 @@ function SparkIcon({ className }: IconProps) {
     </svg>
   );
 }
-function StarIcon({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={base(className)} aria-hidden="true">
-      <path d="M12 3.5 14.6 9l6 .8-4.4 4.2 1.1 6L12 17.8 6.7 20l1.1-6L3.4 9.8l6-.8L12 3.5Z" />
-    </svg>
-  );
-}
 function CodeIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={base(className)} aria-hidden="true">
@@ -171,10 +166,12 @@ function LinkedInIcon({ className }: IconProps) {
 /* ──────────────────────────────────────────────────────────────
    Datos
    ────────────────────────────────────────────────────────────── */
-const stats = [
+/* Datos reales para la barra de la sección de testimonios. */
+const testimonioStats = [
   { value: "+40", label: "Estudiantes formados", Icon: UsersIcon },
-  { value: "2+", label: "Años enseñando IA", Icon: SparkIcon },
-  { value: "5+", label: "Años como ingeniero", Icon: CodeIcon },
+  { value: "100%", label: "Clases en vivo", Icon: PlayIcon },
+  { value: "6 sem", label: "Por cohorte", Icon: ClockIcon },
+  { value: "Para siempre", label: "Acceso a grabaciones", Icon: SparkIcon },
 ];
 
 const razones = [
@@ -326,6 +323,22 @@ const redes = [
   { Icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/in/mriverius" },
 ];
 
+function StarSolid({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="m12 2 2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2Z" />
+    </svg>
+  );
+}
+
+function PlayTriangle({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+    </svg>
+  );
+}
+
 function WhatsAppButton({
   label,
   href = WHATSAPP_LINK,
@@ -339,18 +352,51 @@ function WhatsAppButton({
 }) {
   const styles =
     variant === "ghost"
-      ? "bg-transparent border-cyan/25 text-cyan/80 hover:bg-cyan/10 hover:text-cyan"
-      : "bg-cyan/15 border-cyan/30 text-cyan hover:bg-cyan/25 glow-cyan-hover";
+      ? "border-cyan/40 text-cyan hover:bg-cyan/10 hover:border-cyan/60"
+      : "border-cyan bg-cyan text-background hover:bg-cyan-dim hover:border-cyan-dim shadow-[0_0_28px_-8px_var(--color-cyan)] hover:shadow-[0_0_40px_-6px_var(--color-cyan)]";
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${full ? "w-full" : ""} inline-flex items-center justify-center gap-2.5 py-4 px-8 rounded-xl border text-lg font-semibold transition-all duration-300 hover:scale-[1.02] ${styles}`}
+      className={`group ${full ? "w-full" : ""} inline-flex items-center justify-center gap-2.5 py-3.5 px-7 rounded-lg border text-base sm:text-lg font-semibold tracking-tight transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 ${styles}`}
     >
-      <ChatIcon className="w-5 h-5" />
+      <ChatIcon className="w-5 h-5 shrink-0" />
       {label}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </svg>
     </a>
+  );
+}
+
+/* Encabezado de sección: eyebrow con líneas + título sharp + bajada. */
+function SectionHeader({
+  Icon,
+  eyebrow,
+  title,
+  desc,
+}: {
+  Icon: ComponentType<IconProps>;
+  eyebrow: string;
+  title: ReactNode;
+  desc: ReactNode;
+}) {
+  return (
+    <div className="flex flex-col items-center gap-5 text-center">
+      <span className="inline-flex items-center gap-3">
+        <span className="h-px w-8 bg-gradient-to-r from-transparent to-cyan/50" aria-hidden="true" />
+        <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan/85">
+          <Icon className="w-4 h-4" />
+          {eyebrow}
+        </span>
+        <span className="h-px w-8 bg-gradient-to-l from-transparent to-cyan/50" aria-hidden="true" />
+      </span>
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.08] text-foreground max-w-4xl text-balance">
+        {title}
+      </h2>
+      <p className="text-foreground/55 max-w-2xl leading-relaxed">{desc}</p>
+    </div>
   );
 }
 
@@ -376,114 +422,189 @@ export default function AcademiaPage() {
       {/* Banner con countdown — arriba de todo */}
       <CourseBanner ctaLink={BANNER_LINK} />
 
-      <main className="flex flex-col items-center gap-28 pt-6 pb-16 px-6 w-full max-w-6xl z-10">
+      <main className="flex flex-col items-center gap-28 pt-6 pb-16 px-6 sm:px-8 w-full max-w-[88rem] z-10">
         <div className="w-full max-w-lg -mb-16">
           <Breadcrumb items={[{ label: "Academia" }]} />
         </div>
 
         {/* ───────────── HERO (sin Reveal: visible al instante para un LCP rápido) ───────────── */}
-        <div className="w-full flex flex-col items-center">
-        <section id="inicio" className="flex flex-col items-center gap-6 text-center scroll-mt-28">
-          <span className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-cyan/80 border border-cyan/20 rounded-full px-4 py-1.5">
-            <SparkIcon className="w-4 h-4" />
-            Academia Riverius
-          </span>
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.1]">
-            Convertite en el profesional que{" "}
-            <span className="text-cyan glow-text">sí le saca provecho a la IA.</span>
-          </h1>
-          <p className="text-foreground/60 text-lg leading-relaxed max-w-2xl">
-            Te enseño a automatizar tu trabajo con IA, paso a paso, en vivo y en
-            grupo. No es teoría: es lo mismo que uso todos los días como ingeniero
-            Top Rated en Upwork para clientes de EE.UU., Europa y Medio Oriente.
-            Lo que te toma horas, con IA lo resolvés en minutos.
-          </p>
-
-          {/* Próxima cohorte */}
-          <span className="inline-flex items-center gap-2 text-sm text-foreground/80 bg-cyan/10 border border-cyan/25 rounded-full px-4 py-1.5">
-            <ClockIcon className="w-4 h-4 text-cyan" />
-            Cohorte activa: <span className="font-semibold text-cyan">Agentes con IA (n8n) · abre el 16 de junio</span>
-          </span>
-
-          <div className="flex flex-col items-center gap-2 mt-2">
-            <WhatsAppButton href={BANNER_LINK} label="Quiero recuperar mis horas" />
-            <span className="text-foreground/65 text-sm">
-              Te respondo personalmente · sin compromiso
+        <div className="w-full">
+        <section
+          id="inicio"
+          className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-12 items-center scroll-mt-28"
+        >
+          {/* ── Columna izquierda: texto + CTAs + prueba social ── */}
+          <div className="flex flex-col items-start gap-6 text-left">
+            <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] uppercase text-cyan/85 border border-cyan/25 rounded-md px-3.5 py-2">
+              <SparkIcon className="w-4 h-4" />
+              IA aplicada · en vivo y en grupo
             </span>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.035em] leading-[1.0] text-balance">
+              Convertite en el pro que{" "}
+              <span className="text-cyan glow-text">le saca provecho a la IA.</span>
+            </h1>
+
+            <p className="text-foreground/60 text-base sm:text-lg leading-relaxed max-w-xl">
+              Te enseño a automatizar tu trabajo con IA, paso a paso, en vivo y en
+              grupo. Es lo mismo que uso como ingeniero Top Rated en Upwork. Lo que
+              te toma horas, con IA lo resolvés en minutos.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-1">
+              <WhatsAppButton href={BANNER_LINK} label="Quiero recuperar mis horas" />
+              <a
+                href="#recorrido"
+                className="group inline-flex items-center gap-3 font-semibold text-foreground/90 transition-colors hover:text-cyan"
+              >
+                <span className="flex items-center justify-center w-12 h-12 rounded-full border border-cyan/40 text-cyan transition-all duration-300 group-hover:bg-cyan/10 group-hover:border-cyan/70">
+                  <PlayTriangle className="w-4 h-4 ml-0.5" />
+                </span>
+                Ver una clase
+              </a>
+            </div>
+
+            {/* Prueba social */}
+            <div className="flex items-center gap-4 mt-2">
+              <div className="flex -space-x-3">
+                {["A", "A", "F", "B"].map((ini, i) => (
+                  <span
+                    key={i}
+                    className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-background bg-gradient-to-br from-cyan/30 to-cyan/5 text-cyan text-sm font-bold"
+                  >
+                    {ini}
+                  </span>
+                ))}
+                <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-background bg-cyan text-background text-xs font-bold">
+                  +40
+                </span>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="flex items-center gap-0.5 text-cyan">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <StarSolid key={i} className="w-4 h-4" />
+                  ))}
+                </span>
+                <span className="text-foreground/60 text-sm">
+                  +40 profesionales ya formados
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 sm:gap-8 w-full max-w-2xl mt-8 pt-8 border-t border-card-border">
-            {stats.map(({ value, label, Icon }) => (
-              <div key={label} className="flex flex-col items-center gap-1.5">
-                <Icon className="w-5 h-5 text-cyan/70" />
-                <span className="text-2xl sm:text-3xl font-bold text-foreground">{value}</span>
-                <span className="text-foreground/60 text-xs sm:text-sm leading-tight">{label}</span>
+          {/* ── Columna derecha: imagen + tarjetas flotantes ── */}
+          <div className="relative w-full max-w-sm mx-auto lg:max-w-[420px]">
+            {/* Resplandor detrás */}
+            <div className="absolute -inset-6 bg-cyan/10 rounded-[2rem] blur-3xl pointer-events-none" />
+
+            {/* Imagen */}
+            <div className="relative overflow-hidden rounded-2xl border border-cyan/25 bg-card-bg/60 glow-cyan" style={{ aspectRatio: 4 / 5 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/mariano.png"
+                alt="Mariano Riverius, tu profesor en la Academia"
+                className="absolute inset-0 w-full h-full object-cover object-top"
+              />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
+              <div className="absolute left-5 bottom-5">
+                <span className="block text-foreground font-bold text-lg leading-tight">Mariano Riverius</span>
+                <span className="block text-cyan/80 text-xs font-semibold tracking-[0.18em] uppercase">
+                  Ingeniero · Top Rated en Upwork
+                </span>
               </div>
-            ))}
+            </div>
+
+            {/* Tarjeta: cohorte en vivo (arriba-izquierda) */}
+            <div className="hidden md:flex absolute -left-20 lg:-left-24 top-8 z-10 flex-col gap-2 w-52 rounded-xl border border-cyan/25 bg-card-bg/90 backdrop-blur-md p-4 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.6)]">
+              <span className="inline-flex items-center gap-1.5 self-start rounded-md bg-cyan/15 border border-cyan/30 px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase text-cyan">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse-glow" />
+                En vivo
+              </span>
+              <span className="text-foreground font-semibold leading-snug">Agentes con IA · n8n</span>
+              <span className="text-foreground/55 text-xs">Clases en vivo, grupales y grabadas</span>
+            </div>
+
+            {/* Tarjeta: nivel Upwork (derecha) */}
+            <div className="hidden md:flex absolute -right-20 lg:-right-24 top-1/3 z-10 flex-col gap-2 w-52 rounded-xl border border-card-border bg-card-bg/90 backdrop-blur-md p-4 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.6)]">
+              <div className="flex items-center justify-between">
+                <span className="text-foreground/60 text-xs">Nivel en Upwork</span>
+                <span className="text-cyan text-sm font-bold tabular-nums">9.99%</span>
+              </div>
+              <div className="h-1.5 w-full rounded-sm bg-background overflow-hidden">
+                <span className="block h-full w-[92%] bg-cyan rounded-sm" />
+              </div>
+              <span className="text-foreground/80 text-xs font-semibold">Top Rated · top 9.99% mundial</span>
+            </div>
+
+            {/* Tarjeta: recorrido (abajo-derecha) */}
+            <div className="hidden md:flex absolute -right-4 bottom-8 z-10 items-center gap-3 rounded-xl border border-card-border bg-card-bg/90 backdrop-blur-md px-4 py-3 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.6)]">
+              <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-cyan/10 border border-cyan/25 text-cyan">
+                <TrendIcon className="w-5 h-5" />
+              </span>
+              <span className="flex flex-col leading-tight">
+                <span className="text-foreground text-sm font-semibold">De cero → automatización</span>
+                <span className="text-foreground/55 text-xs">Tu recorrido, paso a paso</span>
+              </span>
+            </div>
           </div>
         </section>
+
+        {/* Tira de herramientas */}
+        <div className="mt-10 flex flex-col items-center gap-5">
+          <span className="text-[11px] uppercase tracking-[0.25em] text-foreground/40">
+            Las herramientas que vas a dominar
+          </span>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 sm:gap-x-12 gap-y-4 text-foreground/45">
+            {["Make.com", "n8n", "OpenAI", "Airtable", "Gmail", "Telegram"].map((tool) => (
+              <span key={tool} className="text-lg font-semibold tracking-tight transition-colors hover:text-foreground/70">
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
 
         </div>
 
         {/* ───────────── TESTIMONIOS ───────────── */}
-        <Reveal className="w-full flex flex-col items-center">
-        <section id="testimonios" className="flex flex-col items-center gap-8 w-full scroll-mt-28">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-              <StarIcon className="w-6 h-6" />
-            </span>
-            <h2 className="text-3xl font-bold text-foreground">
-              No lo digo yo. Lo dicen los{" "}
-              <span className="text-cyan glow-text">+40 que ya pasaron por acá</span>
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Alumnos reales contando qué construyeron y cuánto tiempo se ahorran
-              hoy. Esa es la diferencia entre oír hablar de IA y ponerla a trabajar.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full">
-            {[VIDEOS.testimonio1, VIDEOS.testimonio3, VIDEOS.testimonio2, VIDEOS.testimonio4].map((t) => (
-              <div
-                key={t.id}
-                className="flex flex-col gap-3 rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
-              >
-                <WistiaEmbed id={t.id} aspect={t.aspect} title={`Testimonio de ${t.nombre}`} />
-                <div className="flex items-center gap-2 px-2 pb-1">
-                  <StarIcon className="w-4 h-4 text-cyan shrink-0" />
-                  <span className="flex flex-col leading-tight">
-                    <span className="text-foreground/80 text-sm font-medium">{t.nombre}</span>
-                    <span className="text-foreground/60 text-xs">{t.rol}</span>
-                  </span>
-                </div>
+        <Reveal className="w-full flex flex-col items-center gap-10">
+          <Testimonios />
+
+          {/* Barra de datos reales */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 w-full max-w-5xl rounded-xl border border-card-border bg-card-bg/50 backdrop-blur-sm divide-y divide-card-border sm:divide-y-0 sm:divide-x">
+            {testimonioStats.map(({ value, label, Icon }) => (
+              <div key={label} className="flex items-center gap-3 px-6 py-6">
+                <Icon className="w-6 h-6 text-cyan shrink-0" />
+                <span className="flex flex-col leading-tight">
+                  <span className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">{value}</span>
+                  <span className="text-foreground/55 text-xs sm:text-sm">{label}</span>
+                </span>
               </div>
             ))}
           </div>
-        </section>
 
+          <WhatsAppButton href={WHATSAPP_LINK} label="Ver todos los cursos" />
         </Reveal>
 
         {/* ───────────── POR QUÉ APRENDER IA ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
         <section id="por-que" className="flex flex-col items-center gap-10 w-full scroll-mt-28">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-              <TrendIcon className="w-6 h-6" />
-            </span>
-            <h2 className="text-3xl font-bold text-foreground">
-              Cuatro cosas cambian cuando ponés la IA{" "}
-              <span className="text-cyan glow-text">a trabajar por vos</span>
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Casi todo el mundo oyó hablar de la IA. Muy pocos la convierten en
-              horas ahorradas y trabajo más valioso. Esa es la diferencia.
-            </p>
-          </div>
+          <SectionHeader
+            Icon={TrendIcon}
+            eyebrow="Por qué la IA"
+            title={
+              <>
+                Cuatro cosas cambian cuando ponés la IA{" "}
+                <span className="text-cyan glow-text">a trabajar por vos</span>
+              </>
+            }
+            desc="Casi todo el mundo oyó hablar de la IA. Muy pocos la convierten en horas ahorradas y trabajo más valioso. Esa es la diferencia."
+          />
           <div className="grid sm:grid-cols-2 gap-5 w-full">
             {razones.map(({ Icon, title, desc }) => (
               <div
                 key={title}
-                className="flex gap-4 rounded-2xl border border-card-border bg-card-bg/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-cyan/40"
+                className="flex gap-4 rounded-xl border border-card-border bg-card-bg/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-cyan/40"
               >
                 <span className="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/20 text-cyan">
                   <Icon className="w-6 h-6" />
@@ -502,22 +623,19 @@ export default function AcademiaPage() {
         {/* ───────────── PRIMERA CLASE ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
         <section id="recorrido" className="flex flex-col items-center gap-6 w-full scroll-mt-28">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-              <PlayIcon className="w-6 h-6" />
-            </span>
-            <h2 className="text-3xl font-bold text-foreground">
-              De tu primera clase a tu primera{" "}
-              <span className="text-cyan glow-text">automatización funcionando</span>
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              No te vas con apuntes: te vas con cosas que ya corren solas. Mirá el
-              recorrido real de un alumno, desde que abre la herramienta por primera
-              vez hasta que su proyecto final le ahorra trabajo cada semana.
-            </p>
-          </div>
+          <SectionHeader
+            Icon={PlayIcon}
+            eyebrow="El recorrido"
+            title={
+              <>
+                De tu primera clase a tu primera{" "}
+                <span className="text-cyan glow-text">automatización funcionando</span>
+              </>
+            }
+            desc="No te vas con apuntes: te vas con cosas que ya corren solas. Mirá el recorrido real de un alumno, desde que abre la herramienta por primera vez hasta que su proyecto final le ahorra trabajo cada semana."
+          />
           <div className="grid lg:grid-cols-2 gap-6 w-full">
-            <div className="flex flex-col gap-3 h-full rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
+            <div className="flex flex-col gap-3 h-full rounded-xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
               <WistiaEmbed
                 id={VIDEOS.primeraClase.id}
                 aspect={VIDEOS.primeraClase.aspect}
@@ -535,7 +653,7 @@ export default function AcademiaPage() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-col gap-3 h-full rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
+            <div className="flex flex-col gap-3 h-full rounded-xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40">
               <WistiaEmbed
                 id={VIDEOS.proyectoFinal.id}
                 aspect={VIDEOS.proyectoFinal.aspect}
@@ -561,23 +679,21 @@ export default function AcademiaPage() {
         {/* ───────────── CURSOS ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
         <section id="cursos" className="flex flex-col items-center gap-8 w-full scroll-mt-28">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-              <BoltIcon className="w-6 h-6" />
-            </span>
-            <h2 className="text-3xl font-bold text-foreground">
-              Tres cursos, un solo <span className="text-cyan glow-text">camino claro</span>
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              De cero a automatizar como un pro. No tenés que tomarlos todos de
-              una: empezás donde estás y avanzás a tu ritmo.
-            </p>
-          </div>
+          <SectionHeader
+            Icon={BoltIcon}
+            eyebrow="Los cursos"
+            title={
+              <>
+                Tres cursos, un solo <span className="text-cyan glow-text">camino claro</span>
+              </>
+            }
+            desc="De cero a automatizar como un pro. No tenés que tomarlos todos de una: empezás donde estás y avanzás a tu ritmo."
+          />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
             {cursos.map((c) => (
               <div
                 key={c.title}
-                className={`flex flex-col gap-4 rounded-2xl border bg-card-bg/80 backdrop-blur-sm p-8 transition-all duration-300 ${
+                className={`flex flex-col gap-4 rounded-xl border bg-card-bg/80 backdrop-blur-sm p-8 transition-all duration-300 ${
                   c.soon
                     ? "border-card-border opacity-90"
                     : "border-card-border hover:border-cyan/50 glow-cyan-hover"
@@ -636,10 +752,10 @@ export default function AcademiaPage() {
                     href={waLink(c.waMsg)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl border text-sm font-semibold text-center leading-snug transition-all duration-300 ${
+                    className={`group/cta w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-lg border text-sm font-semibold text-center leading-snug tracking-tight transition-all duration-300 hover:-translate-y-0.5 ${
                       c.soon
-                        ? "bg-transparent border-cyan/25 text-cyan/80 hover:bg-cyan/10 hover:text-cyan"
-                        : "bg-cyan/15 border-cyan/30 text-cyan hover:bg-cyan/25 glow-cyan-hover"
+                        ? "bg-transparent border-cyan/30 text-cyan/85 hover:bg-cyan/10 hover:text-cyan hover:border-cyan/50"
+                        : "bg-cyan border-cyan text-background hover:bg-cyan-dim hover:border-cyan-dim shadow-[0_0_22px_-8px_var(--color-cyan)] hover:shadow-[0_0_34px_-6px_var(--color-cyan)]"
                     }`}
                   >
                     <ChatIcon className="w-4 h-4 shrink-0" />
@@ -656,25 +772,21 @@ export default function AcademiaPage() {
         {/* ───────────── SOBRE MÍ ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
         <section id="profesor" className="flex flex-col items-center gap-10 w-full scroll-mt-28">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-              <BriefcaseIcon className="w-6 h-6" />
-            </span>
-            <h2 className="text-3xl font-bold text-foreground">
-              Quién te va a <span className="text-cyan glow-text">enseñar</span>
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Soy Mariano Riverius, ingeniero de software con +5 años construyendo
-              sistemas reales. Un día yo tampoco sabía de IA: la aprendí en la
-              trinchera, resolviendo problemas por los que me pagan. Eso es
-              exactamente lo que te enseño.
-            </p>
-          </div>
+          <SectionHeader
+            Icon={BriefcaseIcon}
+            eyebrow="Tu profesor"
+            title={
+              <>
+                Quién te va a <span className="text-cyan glow-text">enseñar</span>
+              </>
+            }
+            desc="Soy Mariano Riverius, ingeniero de software con +5 años construyendo sistemas reales. Un día yo tampoco sabía de IA: la aprendí en la trinchera, resolviendo problemas por los que me pagan. Eso es exactamente lo que te enseño."
+          />
 
           <div className="flex flex-col lg:flex-row items-stretch gap-8 w-full">
             {/* Foto + redes */}
             <div className="shrink-0 w-full max-w-xs mx-auto lg:mx-0 flex flex-col gap-4">
-              <div className="relative overflow-hidden rounded-2xl border border-cyan/25 bg-card-bg/60 glow-cyan-hover" style={{ aspectRatio: 3 / 4 }}>
+              <div className="relative overflow-hidden rounded-xl border border-cyan/25 bg-card-bg/60 glow-cyan-hover" style={{ aspectRatio: 3 / 4 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/mariano.png"
@@ -712,7 +824,7 @@ export default function AcademiaPage() {
             {/* Credenciales */}
             <div className="flex flex-col gap-4 flex-1 w-full">
               {/* Destacado Top Rated */}
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl border border-cyan/30 bg-cyan/10 p-6 glow-cyan">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-cyan/30 bg-cyan/10 p-6 glow-cyan">
                 <div className="flex items-baseline gap-2 shrink-0">
                   <span className="text-4xl font-bold text-cyan glow-text">9.99%</span>
                 </div>
@@ -727,7 +839,7 @@ export default function AcademiaPage() {
               {credenciales.map(({ Icon, title, sub }) => (
                 <div
                   key={title}
-                  className="flex items-center gap-4 rounded-2xl border border-card-border bg-card-bg/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-cyan/40"
+                  className="flex items-center gap-4 rounded-xl border border-card-border bg-card-bg/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-cyan/40"
                 >
                   <span className="shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
                     <Icon className="w-6 h-6" />
@@ -747,24 +859,21 @@ export default function AcademiaPage() {
         {/* ───────────── CLIPS 1:1 ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
         <section id="acompanamiento" className="flex flex-col items-center gap-8 w-full scroll-mt-28">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-              <UsersIcon className="w-6 h-6" />
-            </span>
-            <h2 className="text-3xl font-bold text-foreground">
-              No te dejo solo: te acompaño <span className="text-cyan glow-text">1:1</span> en cada clase
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Si te trabás, lo resolvemos en el momento. Compartís pantalla, lo
-              vemos juntos y seguís. Así nadie se queda atrás. Estos son clips
-              reales del soporte en vivo.
-            </p>
-          </div>
+          <SectionHeader
+            Icon={UsersIcon}
+            eyebrow="Acompañamiento 1:1"
+            title={
+              <>
+                No te dejo solo: te acompaño <span className="text-cyan glow-text">1:1</span> en cada clase
+              </>
+            }
+            desc="Si te trabás, lo resolvemos en el momento. Compartís pantalla, lo vemos juntos y seguís. Así nadie se queda atrás. Estos son clips reales del soporte en vivo."
+          />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full items-stretch">
             {clips1a1.map((clip, i) => (
               <div
                 key={i}
-                className="flex flex-col gap-3 h-full rounded-2xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
+                className="flex flex-col gap-3 h-full rounded-xl border border-card-border bg-card-bg/60 backdrop-blur-sm p-2 sm:p-3 transition-all duration-300 hover:border-cyan/40"
               >
                 {clip.wistiaId ? (
                   <WistiaEmbed id={clip.wistiaId} aspect={clip.aspect} title={clip.titulo} />
@@ -794,28 +903,27 @@ export default function AcademiaPage() {
         {/* ───────────── FAQ ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
         <section id="faq" className="flex flex-col items-center gap-8 w-full scroll-mt-28">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
-              <HelpIcon className="w-6 h-6" />
-            </span>
-            <h2 className="text-3xl font-bold text-foreground">
-              Preguntas <span className="text-cyan glow-text">frecuentes</span>
-            </h2>
-            <p className="text-foreground/60 max-w-2xl leading-relaxed">
-              Lo que casi todo el mundo me pregunta antes de empezar.
-            </p>
-          </div>
+          <SectionHeader
+            Icon={HelpIcon}
+            eyebrow="Preguntas frecuentes"
+            title={
+              <>
+                Preguntas <span className="text-cyan glow-text">frecuentes</span>
+              </>
+            }
+            desc="Lo que casi todo el mundo me pregunta antes de empezar."
+          />
           <div className="grid sm:grid-cols-2 gap-4 w-full items-start">
             {faqs.map(({ q, a }, i) => (
               <details
                 key={q}
-                className="group relative overflow-hidden rounded-2xl border border-card-border bg-card-bg/70 backdrop-blur-sm transition-all duration-300 hover:border-cyan/40 open:border-cyan/45 open:bg-cyan/[0.04] open:shadow-[0_0_30px_-12px_var(--color-cyan)]"
+                className="group relative overflow-hidden rounded-xl border border-card-border bg-card-bg/70 backdrop-blur-sm transition-all duration-300 hover:border-cyan/40 open:border-cyan/45 open:bg-cyan/[0.04] open:shadow-[0_0_30px_-12px_var(--color-cyan)]"
               >
                 <span
                   className="absolute left-0 top-0 h-full w-1 origin-top scale-y-0 bg-cyan transition-transform duration-300 group-open:scale-y-100"
                   aria-hidden="true"
                 />
-                <summary className="flex items-center gap-4 cursor-pointer list-none p-5 sm:p-6 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+                <summary className="flex items-center gap-4 cursor-pointer list-none p-5 sm:p-6 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                   <span className="shrink-0 flex items-center justify-center w-9 h-9 rounded-lg bg-cyan/10 border border-cyan/20 text-cyan text-sm font-bold tabular-nums transition-colors duration-300 group-open:bg-cyan group-open:text-background">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -852,7 +960,7 @@ export default function AcademiaPage() {
 
         {/* ───────────── CTA FINAL ───────────── */}
         <Reveal className="w-full flex flex-col items-center">
-        <section id="reservar" className="flex flex-col items-center gap-6 text-center w-full rounded-2xl border border-cyan/20 bg-cyan/5 backdrop-blur-sm p-10 sm:p-14 scroll-mt-28">
+        <section id="reservar" className="flex flex-col items-center gap-6 text-center w-full rounded-xl border border-cyan/20 bg-cyan/5 backdrop-blur-sm p-10 sm:p-14 scroll-mt-28">
           <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-cyan/10 border border-cyan/25 text-cyan">
             <BoltIcon className="w-6 h-6" />
           </span>
