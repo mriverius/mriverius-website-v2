@@ -150,7 +150,7 @@ export default function Testimonios() {
         </span>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.08] text-foreground max-w-4xl text-balance">
           No lo digo yo. Lo dicen los{" "}
-          <span className="text-cyan glow-text">+40 que ya pasaron por acá</span>
+          <span className="text-cyan glow-text">+50 que ya pasaron por acá</span>
         </h2>
         <p className="text-foreground/55 max-w-2xl leading-relaxed">
           Alumnos reales contando qué construyeron y cuánto tiempo se ahorran hoy.

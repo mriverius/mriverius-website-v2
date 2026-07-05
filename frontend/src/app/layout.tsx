@@ -15,8 +15,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Riverius — Aprende IA",
+  metadataBase: new URL("https://mriverius.com"),
+  title: {
+    default: "Riverius — Aprende IA",
+    template: "%s — Riverius",
+  },
   description: "Riverius te enseña Inteligencia Artificial. Recursos, comunidad y más.",
+  openGraph: {
+    siteName: "Riverius",
+    locale: "es_CR",
+    type: "website",
+  },
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png" }],
     shortcut: [{ url: "/favicon.png", type: "image/png" }],

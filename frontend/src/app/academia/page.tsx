@@ -1,15 +1,33 @@
 import type { ComponentType, ReactNode } from "react";
+import Image from "next/image";
 import Breadcrumb from "../components/Breadcrumb";
 import AcademiaPopup from "./AcademiaPopup";
-import CourseBanner from "./CourseBanner";
+// import CourseBanner from "./CourseBanner"; // banner oculto — reactivar cuando haya nueva fecha
 import FloatingWhatsApp from "./FloatingWhatsApp";
 import Reveal from "./Reveal";
 import Testimonios from "./Testimonios";
 
-export const metadata = {
-  title: "Academia — Riverius",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Academia — Cursos de IA y automatización",
   description:
-    "Convertite en el profesional que sí le saca provecho a la IA. Cursos de automatización con Make.com y n8n: lo que te toma horas, en minutos. +40 alumnos formados.",
+    "Convertite en el profesional que sí le saca provecho a la IA. Cursos de automatización con Make.com y n8n: lo que te toma horas, en minutos. +50 alumnos formados.",
+  alternates: { canonical: "/academia" },
+  openGraph: {
+    title: "Academia Riverius — Cursos de IA y automatización",
+    description:
+      "Cursos en vivo de automatización con IA (Make.com, n8n y Copilot Studio). +50 alumnos formados. Lo que te toma horas, en minutos.",
+    url: "/academia",
+    images: [{ url: "/mariano.png", width: 1086, height: 1448, alt: "Mariano Riverius — Academia" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Academia Riverius — Cursos de IA y automatización",
+    description:
+      "Cursos en vivo de automatización con IA (Make.com, n8n y Copilot Studio). +50 alumnos formados.",
+    images: ["/mariano.png"],
+  },
 };
 
 /* ──────────────────────────────────────────────────────────────
@@ -32,9 +50,9 @@ const WHATSAPP_LINK = waLink(
   "¡Hola Riverius! Vi la página de la Academia y quiero más información sobre los cursos de IA."
 );
 
-/* Banner / próximo curso (Agentes con IA · n8n, abre 16 de junio 7–9 pm) */
+/* Próximo curso (Agentes con IA · n8n) */
 const BANNER_LINK = waLink(
-  "¡Hola Riverius! Vi que el curso de Agentes con IA (n8n) abre el 16 de junio. Quiero apartar uno de los cupos que quedan."
+  "¡Hola Riverius! Me interesa el curso de Agentes con IA (n8n). Quiero apartar mi cupo para la próxima cohorte."
 );
 
 /* ──────────────────────────────────────────────────────────────
@@ -168,7 +186,7 @@ function LinkedInIcon({ className }: IconProps) {
    ────────────────────────────────────────────────────────────── */
 /* Datos reales para la barra de la sección de testimonios. */
 const testimonioStats = [
-  { value: "+40", label: "Estudiantes formados", Icon: UsersIcon },
+  { value: "+50", label: "Estudiantes formados", Icon: UsersIcon },
   { value: "100%", label: "Clases en vivo", Icon: PlayIcon },
   { value: "6 sem", label: "Por cohorte", Icon: ClockIcon },
   { value: "Para siempre", label: "Acceso a grabaciones", Icon: SparkIcon },
@@ -209,7 +227,7 @@ const cursos = [
       "Tu primer flujo funcionando en el negocio",
     ],
     soon: false,
-    precio: "₡19.000",
+    precio: "₡21.000",
     cta: "Quiero el Curso 1 (Make.com)",
     waMsg:
       "¡Hola Riverius! Me interesa el Curso 1 de Automatizaciones con Make.com. ¿Me contás cuándo abre y cómo inscribirme?",
@@ -225,10 +243,10 @@ const cursos = [
       "Sistemas que resuelven procesos completos",
     ],
     soon: false,
-    precio: "₡19.000",
-    cta: "Apartar mi cupo (n8n · 16 jun)",
+    precio: "₡21.000",
+    cta: "Apartar mi cupo (n8n)",
     waMsg:
-      "¡Hola Riverius! Me interesa el Curso 2, Agentes con IA (n8n), que abre el 16 de junio. Quiero apartar uno de los cupos que quedan.",
+      "¡Hola Riverius! Me interesa el Curso 2, Agentes con IA (n8n). Quiero apartar mi cupo para la próxima cohorte.",
   },
   {
     badge: "Curso 3 · Próximamente",
@@ -268,7 +286,7 @@ const faqs = [
   },
   {
     q: "¿Cuánto cuesta?",
-    a: "₡19.000 por quincena durante el curso. Sin sorpresas: lo que ves es lo que pagás.",
+    a: "₡21.000 por quincena durante el curso. Sin sorpresas: lo que ves es lo que pagás.",
   },
   {
     q: "¿Hay descuento si pago todo de una vez?",
@@ -308,7 +326,7 @@ const credenciales = [
   {
     Icon: SparkIcon,
     title: "Enseño desde la trinchera",
-    sub: "+2 años enseñando IA y +40 alumnos. Lo que enseño es lo mismo que uso para ganarme la vida.",
+    sub: "+2 años enseñando IA y +50 alumnos. Lo que enseño es lo mismo que uso para ganarme la vida.",
   },
   {
     Icon: CodeIcon,
@@ -354,11 +372,11 @@ function WhatsAppButton({
     variant === "ghost"
       ? "border-cyan/40 text-cyan hover:bg-cyan/10 hover:border-cyan/60"
       : "border-cyan bg-cyan text-background hover:bg-cyan-dim hover:border-cyan-dim shadow-[0_0_28px_-8px_var(--color-cyan)] hover:shadow-[0_0_40px_-6px_var(--color-cyan)]";
+  const isInternal = href.startsWith("#");
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(isInternal ? {} : { target: "_blank", rel: "noopener noreferrer" })}
       className={`group ${full ? "w-full" : ""} inline-flex items-center justify-center gap-2.5 py-3.5 px-7 rounded-lg border text-base sm:text-lg font-semibold tracking-tight transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 ${styles}`}
     >
       <ChatIcon className="w-5 h-5 shrink-0" />
@@ -408,6 +426,7 @@ function WistiaEmbed({ id, aspect, title }: { id: string; aspect: number; title:
         title={title}
         allow="autoplay; fullscreen"
         allowFullScreen
+        loading="lazy"
         className="absolute inset-0 w-full h-full"
       />
     </div>
@@ -418,9 +437,6 @@ export default function AcademiaPage() {
   return (
     <div className="flex flex-col flex-1 items-center bg-grid min-h-screen relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan/5 rounded-full blur-[140px] pointer-events-none" />
-
-      {/* Banner con countdown — arriba de todo */}
-      <CourseBanner ctaLink={BANNER_LINK} />
 
       <main className="flex flex-col items-center gap-28 pt-6 pb-16 px-6 sm:px-8 w-full max-w-[88rem] z-10">
         <div className="w-full max-w-lg -mb-16">
@@ -453,7 +469,7 @@ export default function AcademiaPage() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-1">
-              <WhatsAppButton href={BANNER_LINK} label="Quiero recuperar mis horas" />
+              <WhatsAppButton href="#cursos" label="Quiero recuperar mis horas" />
               <a
                 href="#recorrido"
                 className="group inline-flex items-center gap-3 font-semibold text-foreground/90 transition-colors hover:text-cyan"
@@ -477,7 +493,7 @@ export default function AcademiaPage() {
                   </span>
                 ))}
                 <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-background bg-cyan text-background text-xs font-bold">
-                  +40
+                  +50
                 </span>
               </div>
               <div className="flex flex-col gap-0.5">
@@ -487,7 +503,7 @@ export default function AcademiaPage() {
                   ))}
                 </span>
                 <span className="text-foreground/60 text-sm">
-                  +40 profesionales ya formados
+                  +50 profesionales ya formados
                 </span>
               </div>
             </div>
@@ -500,11 +516,13 @@ export default function AcademiaPage() {
 
             {/* Imagen */}
             <div className="relative overflow-hidden rounded-2xl border border-cyan/25 bg-card-bg/60 glow-cyan" style={{ aspectRatio: 4 / 5 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/mariano.png"
                 alt="Mariano Riverius, tu profesor en la Academia"
-                className="absolute inset-0 w-full h-full object-cover object-top"
+                fill
+                priority
+                sizes="(max-width: 640px) 90vw, 420px"
+                className="object-cover object-top"
               />
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
               <div className="absolute left-5 bottom-5">
@@ -787,11 +805,12 @@ export default function AcademiaPage() {
             {/* Foto + redes */}
             <div className="shrink-0 w-full max-w-xs mx-auto lg:mx-0 flex flex-col gap-4">
               <div className="relative overflow-hidden rounded-xl border border-cyan/25 bg-card-bg/60 glow-cyan-hover" style={{ aspectRatio: 3 / 4 }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src="/mariano.png"
                   alt="Mariano Riverius, tu profesor en la Academia"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 640px) 90vw, 320px"
+                  className="object-cover"
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/70 to-transparent p-4 pt-10">
                   <span className="text-foreground font-semibold">Mariano · Riverius</span>
@@ -969,9 +988,9 @@ export default function AcademiaPage() {
             <span className="text-cyan glow-text">a trabajar por vos</span>?
           </h2>
           <p className="text-foreground/60 text-lg max-w-xl leading-relaxed">
-            La cohorte de <span className="text-foreground font-semibold">Agentes con IA (n8n)</span> abre
-            el 16 de junio (7–9 pm) y quedan 4 cupos. Escribime por WhatsApp: te
-            paso precio y el paso a paso para apartar el tuyo. Te respondo yo.
+            Escribime por WhatsApp: te paso la fecha de la próxima cohorte de{" "}
+            <span className="text-foreground font-semibold">Agentes con IA (n8n)</span>, el
+            precio y el paso a paso para apartar tu cupo. Te respondo yo.
           </p>
           <WhatsAppButton href={BANNER_LINK} label="Apartar mi cupo por WhatsApp" />
           <p className="text-foreground/60 text-sm">
