@@ -2,7 +2,7 @@ import type { ComponentType, ReactNode } from "react";
 import Image from "next/image";
 import Breadcrumb from "../components/Breadcrumb";
 import AcademiaPopup from "./AcademiaPopup";
-// import CourseBanner from "./CourseBanner"; // banner oculto — reactivar cuando haya nueva fecha
+import CourseBanner from "./CourseBanner";
 import FloatingWhatsApp from "./FloatingWhatsApp";
 import Reveal from "./Reveal";
 import Testimonios from "./Testimonios";
@@ -187,8 +187,8 @@ function LinkedInIcon({ className }: IconProps) {
 /* Datos reales para la barra de la sección de testimonios. */
 const testimonioStats = [
   { value: "+50", label: "Estudiantes formados", Icon: UsersIcon },
-  { value: "100%", label: "Clases en vivo", Icon: PlayIcon },
-  { value: "6 sem", label: "Por cohorte", Icon: ClockIcon },
+  { value: "100%", label: "Acompañamiento 1:1", Icon: PlayIcon },
+  { value: "6 semanas", label: "Por curso", Icon: ClockIcon },
   { value: "Para siempre", label: "Acceso a grabaciones", Icon: SparkIcon },
 ];
 
@@ -252,10 +252,10 @@ const cursos = [
     badge: "Curso 3 · Próximamente",
     tool: "Copilot Studio",
     title: "Agentes con Copilot Studio",
-    desc: "Para quien quiere llevar la IA adentro de su empresa y sus herramientas del día a día. Vas a construir copilotos y asistentes a la medida de tu negocio. Detalles y fecha pronto.",
+    desc: "Para quien quiere llevar la IA adentro de su empresa y sus herramientas del día a día. Vas a construir copilots y asistentes a la medida de tu negocio. Detalles y fecha pronto.",
     points: [
       "Ecosistema Microsoft / Copilot",
-      "Copilotos a la medida de tu negocio",
+      "Copilots a la medida de tu negocio",
       "Lista de espera disponible ya",
     ],
     soon: true,
@@ -268,8 +268,8 @@ const cursos = [
 
 /* Hechos comunes a todos los cursos (formato, duración, etc.) */
 const cursoFacts = [
-  { Icon: ClockIcon, label: "6 semanas · clases en vivo de 2 h" },
-  { Icon: UsersIcon, label: "En vivo, virtual y grupal" },
+  { Icon: ClockIcon, label: "6 semanas" },
+  { Icon: UsersIcon, label: "Acompañamiento 1:1" },
   { Icon: PlayIcon, label: "Queda grabado para siempre" },
   { Icon: SparkIcon, label: "Recursos y ejercicios para siempre" },
 ];
@@ -281,20 +281,12 @@ const faqs = [
     a: "No. Empezamos desde cero con herramientas visuales (Make.com, n8n). Si sabés usar tu computadora, podés con esto.",
   },
   {
-    q: "¿Cómo son las clases?",
-    a: "En vivo, virtuales y en grupo. Una sesión de 2 horas por semana, durante 6 semanas. Aprendés con otras personas y resolvés dudas en el momento.",
-  },
-  {
     q: "¿Cuánto cuesta?",
     a: "₡21.000 por quincena durante el curso. Sin sorpresas: lo que ves es lo que pagás.",
   },
   {
     q: "¿Hay descuento si pago todo de una vez?",
     a: "Sí. Si pagás el curso completo por adelantado, obtenés un descuento. Escribime por WhatsApp y te paso el precio con el descuento aplicado.",
-  },
-  {
-    q: "¿Y si no puedo conectarme a una clase?",
-    a: "No hay problema: todas quedan grabadas y las podés ver cuando quieras, las veces que quieras. La grabación, la presentación y los ejercicios son tuyos para siempre.",
   },
   {
     q: "¿Para quién es esto?",
@@ -320,17 +312,17 @@ const clips1a1: { titulo: string; wistiaId: string | null; aspect: number }[] = 
 const credenciales = [
   {
     Icon: GlobeIcon,
-    title: "Clientes internacionales",
+    title: "+40 Clientes internacionales",
     sub: "He trabajado con personas y empresas de EE.UU., Canadá, España, Arabia Saudita, Alemania y más.",
   },
   {
     Icon: SparkIcon,
-    title: "Enseño desde la trinchera",
-    sub: "+2 años enseñando IA y +50 alumnos. Lo que enseño es lo mismo que uso para ganarme la vida.",
+    title: "Enseño desde la experiencia",
+    sub: "Lo que enseño es lo mismo que uso para ganarme la vida en mi agencia de IA.",
   },
   {
     Icon: CodeIcon,
-    title: "Ingeniero de software",
+    title: "Ingeniero de software y Licenciado en Informática",
     sub: "+5 años construyendo productos y sistemas reales.",
   },
 ];
@@ -436,6 +428,7 @@ function WistiaEmbed({ id, aspect, title }: { id: string; aspect: number; title:
 export default function AcademiaPage() {
   return (
     <div className="flex flex-col flex-1 items-center bg-grid min-h-screen relative overflow-hidden">
+      <CourseBanner ctaLink={BANNER_LINK} />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan/5 rounded-full blur-[140px] pointer-events-none" />
 
       <main className="flex flex-col items-center gap-28 pt-6 pb-16 px-6 sm:px-8 w-full max-w-[88rem] z-10">
@@ -453,7 +446,7 @@ export default function AcademiaPage() {
           <div className="flex flex-col items-start gap-6 text-left">
             <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] uppercase text-cyan/85 border border-cyan/25 rounded-md px-3.5 py-2">
               <SparkIcon className="w-4 h-4" />
-              IA aplicada · en vivo y en grupo
+              IA aplicada · acompañamiento 1:1
             </span>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.035em] leading-[1.0] text-balance">
@@ -556,7 +549,7 @@ export default function AcademiaPage() {
             </div>
 
             {/* Tarjeta: recorrido (abajo-derecha) */}
-            <div className="hidden md:flex absolute -right-4 bottom-8 z-10 items-center gap-3 rounded-xl border border-card-border bg-card-bg/90 backdrop-blur-md px-4 py-3 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.6)]">
+            <div className="hidden md:flex absolute -right-10 bottom-20 z-10 items-center gap-3 rounded-xl border border-card-border bg-card-bg/90 backdrop-blur-md px-4 py-3 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.6)]">
               <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-cyan/10 border border-cyan/25 text-cyan">
                 <TrendIcon className="w-5 h-5" />
               </span>
@@ -574,7 +567,7 @@ export default function AcademiaPage() {
             Las herramientas que vas a dominar
           </span>
           <div className="flex flex-wrap items-center justify-center gap-x-8 sm:gap-x-12 gap-y-4 text-foreground/45">
-            {["Make.com", "n8n", "OpenAI", "Airtable", "Gmail", "Telegram"].map((tool) => (
+            {["Make.com", "n8n", "OpenAI", "Claude", "Google Sheets", "Airtable", "Gmail", "Telegram", "y muchas más"].map((tool) => (
               <span key={tool} className="text-lg font-semibold tracking-tight transition-colors hover:text-foreground/70">
                 {tool}
               </span>
@@ -663,7 +656,7 @@ export default function AcademiaPage() {
                 <PlayIcon className="w-4 h-4 text-cyan shrink-0" />
                 <span className="flex items-baseline gap-1.5">
                   <span className="text-foreground/80 text-sm font-medium">
-                    Primera clase
+                    Primera clase · Curso de Make.com
                   </span>
                   <span className="text-foreground/65 text-xs">
                     · Tu primera automatización
@@ -681,7 +674,7 @@ export default function AcademiaPage() {
                 <PlayIcon className="w-4 h-4 text-cyan shrink-0" />
                 <span className="flex items-baseline gap-1.5">
                   <span className="text-foreground/80 text-sm font-medium">
-                    Proyecto final
+                    Proyecto final · Curso de Make.com
                   </span>
                   <span className="text-foreground/65 text-xs">
                     · Presentación de Alonso
