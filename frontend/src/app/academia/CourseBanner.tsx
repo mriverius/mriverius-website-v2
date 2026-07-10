@@ -32,10 +32,10 @@ export default function CourseBanner({ ctaLink }: { ctaLink: string }) {
         <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm sm:text-base text-foreground">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan/15 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-cyan">
             <BoltIcon />
-            4 espacios disponibles
+            3 espacios disponibles
           </span>
           <span className="font-semibold">
-            Tengo <span className="text-cyan glow-text">4 espacios más disponibles</span>{" "}
+            Tengo <span className="text-cyan glow-text">3 espacios más disponibles</span>{" "}
             en Julio
           </span>
         </p>
